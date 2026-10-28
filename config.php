@@ -250,7 +250,7 @@ return [
 
     'seo_keywords_primarias' => 'Libros y relatos',
     'seo_descripcion'        => 'Sitio oficial del escritor Alejandro Tinte. Conocé sus libros, sus historias y contactalo directamente.',
-    'seo_og_image'           => '', // TODO: imagen 1200x630 para compartir
+    'seo_og_image'           => '/assets/img/cliente/logos/og-alejandrotinte-1200x630.jpg',
     'dominio'                => 'alejandrotinte.milocalweb.com.ar',
 
     // ─── Dominios ────────────────────────────────────────────────────
