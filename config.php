@@ -54,7 +54,7 @@ return [
     // Dejar vacío mientras el cliente no tenga logo/favicon propios.
 
     'logo_img' => '',
-    'favicon'  => '',
+    'favicon'  => '/assets/img/cliente/iconos/favicon.ico',
 
     // ─── Libros ──────────────────────────────────────────────────────
     // `pdf` y `portada` son rutas relativas a la raíz del sitio.
