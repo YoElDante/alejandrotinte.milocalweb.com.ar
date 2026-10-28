@@ -1,0 +1,255 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Alejandro Tinte — Responsive
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .hero-inner {
+    order: 1;
+    padding: 4rem 1.2rem 2.2rem;
+  }
+
+  .hero-overlay {
+    display: none;
+  }
+
+  .hero-bg {
+    position: relative;
+    order: 2;
+    width: 100%;
+    padding: 0 1.2rem 3rem;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .hero-bg img {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+  }
+
+  .featured {
+    min-height: auto;
+    padding: 4rem 1.2rem;
+  }
+
+  .featured-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .featured-media {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .featured-body {
+    text-align: left;
+  }
+
+  .book-hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .book-hero-cover {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .project-cta-actions .btn {
+    flex: 1 1 auto;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-media {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .about-body {
+    text-align: center;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Footer */
+  .footer-content {
+    text-align: center;
+  }
+
+  .footer-brand {
+    align-items: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-badge {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+
+  .footer-badge-text {
+    text-align: center;
+    align-items: center;
+  }
+
+  /* Menú mobile */
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 5rem 1.5rem 2rem;
+    background: rgba(20, 17, 15, 0.98);
+    backdrop-filter: blur(16px);
+    border-left: 1px solid var(--color-line);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+    z-index: 105;
+    overflow-y: auto;
+  }
+
+  .navbar.open .navbar-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .navbar-menu li {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .navbar-menu a {
+    display: block;
+    padding: 0.9rem 0;
+    font-size: 1rem;
+    color: var(--color-muted);
+  }
+
+  .nav-cta {
+    margin-top: 1rem;
+    justify-content: center;
+  }
+
+  .navbar-menu .nav-cta {
+    display: inline-flex;
+    padding: 0.65rem 1.2rem;
+  }
+
+  .aside-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+
+  .aside-texto {
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 3.2rem 1rem;
+  }
+
+  .about-cta-cover {
+    width: 84px;
+  }
+
+  .about-cta-actions .btn {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .navbar {
+    padding: 0.4rem 1rem;
+  }
+
+  .brand-logo {
+    height: 34px;
+  }
+
+  .navbar-brand.has-logo .brand-name {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .book-body {
+    padding: 0.9rem 0.9rem 1rem;
+  }
+
+  .book-title {
+    font-size: 1.02rem;
+  }
+
+  .book-actions {
+    flex-direction: column;
+  }
+
+  .contact-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .contact-actions .btn {
+    width: 100%;
+  }
+
+  .whatsapp-float {
+    width: 52px;
+    height: 52px;
+    bottom: 125px;
+    right: 20px;
+  }
+
+  .back-to-top {
+    bottom: 68px;
+    right: 20px;
+  }
+}

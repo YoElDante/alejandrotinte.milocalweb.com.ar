@@ -1,0 +1,296 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Alejandro Tinte — Footer + Badge MiLocalWeb + WhatsApp Float
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.site-footer {
+  position: relative;
+  background: #0D0B09;
+  color: rgba(245, 240, 230, 0.75);
+  padding: 3rem 1.5rem 2rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.footer-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-logo {
+  max-height: 120px;
+  max-width: 120px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-brand-name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--color-primary);
+}
+
+.footer-slogan {
+  font-size: 0.93rem;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.footer-social h4,
+.footer-actions h4 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+  opacity: 0.65;
+  text-transform: uppercase;
+}
+
+.social-links {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(245, 240, 230, 0.06);
+  color: rgba(245, 240, 230, 0.6);
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+.social-link:hover {
+  background: var(--color-primary);
+  color: #14110F;
+  transform: translateY(-2px);
+}
+
+/* Color oficial de cada red al pasar el mouse (o al tocar en mobile). */
+.social-link--instagram:hover,
+.social-link--instagram:active {
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff;
+}
+
+.social-link--facebook:hover,
+.social-link--facebook:active {
+  background: #1877F2;
+  color: #fff;
+}
+
+.social-link--linkedin:hover,
+.social-link--linkedin:active {
+  background: #0A66C2;
+  color: #fff;
+}
+
+.social-link--whatsapp:hover,
+.social-link--whatsapp:active {
+  background: #25D366;
+  color: #fff;
+}
+
+.social-link--tiktok:hover,
+.social-link--tiktok:active {
+  background: #000;
+  color: #fff;
+}
+
+/* Botones sin cuenta todavía: no navegan ni se pintan. */
+.social-link--pending,
+.social-link--pending:hover,
+.social-link--pending:active {
+  background: rgba(245, 240, 230, 0.05);
+  color: rgba(245, 240, 230, 0.45);
+  border: 1px dashed var(--color-line);
+  cursor: default;
+  transform: none;
+}
+
+.footer-wa-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: var(--color-whatsapp);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.footer-wa-link:hover {
+  background: var(--color-whatsapp-hover);
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.footer-mail-link {
+  display: block;
+  margin-top: 0.9rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  word-break: break-word;
+}
+
+.footer-mail-link:hover {
+  color: var(--color-primary);
+}
+
+.footer-pending {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* ─── Badge MiLocalWeb ─────────────────────────────────────────────── */
+
+.footer-badge {
+  max-width: var(--max-width);
+  margin: 1.8rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.2rem 1.5rem;
+  background: rgba(245, 240, 230, 0.03);
+  border-radius: var(--radius);
+}
+
+.footer-mlw-logo {
+  flex-shrink: 0;
+  display: flex;
+  transition: opacity 0.2s;
+}
+
+.footer-mlw-logo:hover {
+  opacity: 0.7;
+}
+
+.mlw-logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-badge-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: right;
+}
+
+.footer-badge-text p {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  margin: 0;
+}
+
+.footer-badge-text .mlw-link {
+  color: var(--color-primary);
+  transition: opacity 0.2s;
+}
+
+.footer-badge-text .mlw-link:hover {
+  opacity: 0.7;
+}
+
+.footer-badge-cta {
+  font-size: 0.82rem !important;
+}
+
+.footer-badge-cta a {
+  color: #B3B3B3;
+  font-weight: 500;
+  border-bottom: 1px dashed rgba(179, 179, 179, 0.35);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.footer-badge-cta a:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ─── Footer bottom ───────────────────────────────────────────────── */
+
+.footer-bottom {
+  max-width: var(--max-width);
+  margin: 1.5rem auto 0;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+/* ─── WhatsApp Float ─────────────────────────────────────────────── */
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 100px;
+  right: 28px;
+  z-index: 200;
+  width: 60px;
+  height: 60px;
+  background: var(--color-whatsapp);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.55);
+}
+
+/* ─── Back to Top ────────────────────────────────────────────────── */
+
+.back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 28px;
+  z-index: 200;
+  width: 44px;
+  height: 44px;
+  background: var(--color-primary);
+  color: #14110F;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
+}

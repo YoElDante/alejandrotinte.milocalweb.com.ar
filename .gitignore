@@ -1,0 +1,17 @@
+# IDE
+.atl/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Editor
+*.swp
+*.swo
+*~
+
+# Secrets
+/includes/secrets.php
+
+# Datos privados del cliente (documentos, PDFs, briefs, notas internas).
+_local/

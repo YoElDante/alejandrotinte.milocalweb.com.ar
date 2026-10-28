@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Archivos de código y assets fuente
+Disallow: /includes/
+Disallow: /tools/
+
+# PDFs de los libros: no indexar (las portadas sí, para búsqueda de imágenes)
+Disallow: /*.pdf$
+
+Sitemap: https://alejandrotinte.milocalweb.com.ar/sitemap.xml

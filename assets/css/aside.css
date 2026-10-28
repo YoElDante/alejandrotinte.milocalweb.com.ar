@@ -1,0 +1,77 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Alejandro Tinte — Aside Publicitario
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.publicidad-aside {
+  padding: 2rem 1.5rem;
+  background: rgba(245, 240, 230, 0.02);
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.aside-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.aside-logo {
+  flex-shrink: 0;
+  display: flex;
+  opacity: 0.65;
+  transition: opacity 0.2s;
+}
+
+.aside-logo:hover {
+  opacity: 0.9;
+}
+
+.aside-logo-img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.aside-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.aside-slogan {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.aside-pregunta {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.aside-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.3rem;
+  background: rgba(245, 240, 230, 0.08);
+  color: var(--color-muted);
+  font-weight: 500;
+  font-size: 0.88rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s, color 0.2s;
+}
+
+.aside-cta:hover {
+  background: rgba(245, 240, 230, 0.14);
+  transform: translateY(-1px);
+  color: var(--color-primary);
+}
