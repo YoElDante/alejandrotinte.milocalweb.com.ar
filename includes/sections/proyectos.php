@@ -107,10 +107,10 @@ $hg_url = trim((string) ($hg['url'] ?? ''));
                 </a>
 
                 <a href="<?= e($donacion) ?>"
-                   class="btn <?= $donacion_url === '' ? 'btn--whatsapp' : 'btn--ghost' ?>"
+                   class="btn btn--mercadopago"
                    <?= $donacion_url !== '' ? 'target="_blank" rel="noopener noreferrer"' : ($wa_hay ? 'target="_blank" rel="noopener noreferrer"' : '') ?>>
-                    <?php if ($donacion_url === ''): ?><?= wa_icon() ?><?php endif; ?>
-                    Apoyar con una donación
+                    <?= mercadopago_icon() ?>
+                    Apoyar con Mercado Pago
                 </a>
             </div>
 

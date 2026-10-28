@@ -11,30 +11,17 @@
 
 $wa_hay = wa_disponible($cliente);
 
-$hero_img        = (string) ($cliente['hero_imagen'] ?? '');
-$hero_img_mobile = (string) ($cliente['hero_imagen_mobile'] ?? '');
-$tiene_hero      = asset_existe($hero_img);
-$tiene_mobile    = asset_existe($hero_img_mobile);
-
-// Si falta la de escritorio, se usa la de mobile como respaldo.
-if (!$tiene_hero && $tiene_mobile) {
-    $hero_img   = $hero_img_mobile;
-    $tiene_hero = true;
-}
+$hero_img   = (string) ($cliente['hero_imagen'] ?? '');
+$tiene_hero = asset_existe($hero_img);
 ?>
 <section class="hero" id="inicio">
     <?php if ($tiene_hero): ?>
     <div class="hero-bg" aria-hidden="true">
-        <picture>
-            <?php if ($tiene_mobile): ?>
-            <source media="(max-width: 900px)" srcset="<?= e($hero_img_mobile) ?>">
-            <?php endif; ?>
-            <img src="<?= e($hero_img) ?>"
-                 alt=""
-                 loading="eager"
-                 fetchpriority="high"
-                 decoding="async">
-        </picture>
+        <img src="<?= e($hero_img) ?>"
+             alt=""
+             loading="eager"
+             fetchpriority="high"
+             decoding="async">
     </div>
     <div class="hero-overlay" aria-hidden="true"></div>
     <?php endif; ?>

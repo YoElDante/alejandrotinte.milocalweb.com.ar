@@ -36,6 +36,9 @@ $consultar = wa_link($cliente, 'Hola! Quiero pedir mi copia de "' . $libro['titu
 $portada = asset_existe((string) ($libro['portada'] ?? '')) ? $libro['portada'] : '';
 $portada_grilla = asset_existe((string) ($libro['portada_600'] ?? '')) ? $libro['portada_600'] : $portada;
 $alt     = 'Portada de ' . $libro['titulo'] . ' — ' . $cliente['nombre'];
+
+$flotante = (string) ($cliente['destacado_flotante'] ?? '');
+$flotante = asset_existe($flotante) ? $flotante : '';
 ?>
 <section class="featured" id="destacado" aria-labelledby="destacado-titulo">
     <div class="featured-effects" aria-hidden="true"></div>
@@ -88,8 +91,15 @@ $alt     = 'Portada de ' . $libro['titulo'] . ' — ' . $cliente['nombre'];
                 </a>
                 <?php endif; ?>
 
-                <a href="<?= e($url_libro) ?>" class="featured-link">Ver ficha completa</a>
+                <a href="<?= e($url_libro) ?>" class="book-btn book-btn--more">
+                    <?= svg_icon('book-open') ?>
+                    Ver ficha completa
+                </a>
             </div>
         </div>
+
+        <?php if ($flotante !== ''): ?>
+        <img class="featured-float" src="<?= e($flotante) ?>" alt="" aria-hidden="true" loading="eager" decoding="async">
+        <?php endif; ?>
     </div>
 </section>

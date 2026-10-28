@@ -89,6 +89,14 @@ function amazon_icon(): string
 }
 
 /**
+ * Icono de Mercado Pago para el botón de donación.
+ */
+function mercadopago_icon(): string
+{
+    return svg_icon('mercadopago');
+}
+
+/**
  * Verifica que un asset declarado en config.php exista en disco.
  * Las rutas de config.php son relativas a la raíz del sitio.
  */

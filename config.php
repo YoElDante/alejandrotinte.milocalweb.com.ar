@@ -26,7 +26,6 @@ return [
     'hero_boton_ppal'  => 'Ver las obras',
     'hero_boton_sec'   => 'Contactar al autor',
     'hero_imagen'        => '/assets/img/cliente/escritor/cafe-de-otono-y-reflexion-en-bsas.webp',
-    'hero_imagen_mobile' => '/assets/img/cliente/escritor/momento-contemplativo-en-el-cafe.webp',
 
     // ─── Identidad Visual ────────────────────────────────────────────
     // Paleta neutra provisoria: reemplazar cuando exista el informe de estilo.
@@ -62,6 +61,7 @@ return [
     // `sinopsis` y `anio` quedan vacíos hasta el relevamiento.
 
     'libros_intro' => 'Siete títulos más. Elegí por dónde seguir.',
+    'libros_imagen_decor' => '/assets/img/cliente/flotantes/mesa-vintage-con-cuatro-libros.webp',
 
     'libros' => [
         [
@@ -157,6 +157,7 @@ return [
     // excluye de la grilla. Dejar vacío para no destacar ninguno.
 
     'libro_destacado' => 'a-fuego-y-fierro',
+    'destacado_flotante' => '/assets/img/cliente/flotantes/guitarra-acustica-vintage-remendada.webp',
 
     // ─── Amazon ──────────────────────────────────────────────────────
     // Links de venta, indexados por slug. Todavía no se usan en la UI:
@@ -176,10 +177,22 @@ return [
         'donde-carajos-esta-el-atizador' => 'https://www.amazon.es/dp/B0HCSV4G62',
     ],
 
+    // Imagen decorativa "sticky" por libro (abajo a la derecha de la ficha).
+    'libros_flotantes' => [
+        'la-perla-del-irupe'             => '/assets/img/cliente/flotantes/loto-dorado-con-perla-luminosa.webp',
+        'cuestion-de-fe'                 => '/assets/img/cliente/flotantes/vaca-bajo-un-sol-dorado.webp',
+        'donde-carajos-esta-el-atizador' => '/productos/donde-carajos-esta-el-atizador/donde-librito.webp',
+        'el-juguete'                     => '/productos/el-juguete/librito.webp',
+        'la-libreria'                    => '/assets/img/cliente/flotantes/mesa-vintage-con-cuatro-libros.webp',
+        'perder-el-miedo'                => '/assets/img/cliente/flotantes/pergamino-antiguo-con-pluma-y-tintero.webp',
+        'sergio-el-marcado'              => '/assets/img/cliente/flotantes/nino-y-perro.webp',
+    ],
+
     // ─── Sobre el autor ──────────────────────────────────────────────
 
     'autor_foto' => '/assets/img/cliente/escritor/retrato-sereno-junto-al-mar.webp',
     'autor_imagen' => '/assets/img/cliente/escritor/lectura-en-el-cafe-a-fuego-y-fierro.webp',
+    'autor_flotante' => '/assets/img/cliente/flotantes/pergamino-antiguo-con-pluma-y-tintero.webp',
     'autor_cta_texto' => 'Te invito a conocer mi mayor obra',
 
     'autor_bio' => [
@@ -217,7 +230,7 @@ return [
     'proyectos_whatsapp_mensaje'  => 'Hola! Quiero sumarme al desarrollo de HacemeGancho o aportar ideas',
     'proyectos_donacion_url'      => '', // TODO: link de Cafecito / MercadoPago / similar
     'proyectos_donacion_mensaje'  => 'Hola! Quiero hacer un aporte para el desarrollo de HacemeGancho',
-    'proyectos_donacion_texto'    => 'Tu nombre queda plasmado en los créditos de la aplicación.',
+    'proyectos_donacion_texto'    => 'Tu nombre queda plasmado en los créditos de la aplicación. Y te estaré eternamente agradecido.',
 
     // ─── Contacto ────────────────────────────────────────────────────
 

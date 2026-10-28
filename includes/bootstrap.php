@@ -43,6 +43,7 @@ $jsFiles = [
     'navbar.js',
     'smooth-scroll.js',
     'lightbox.js',
+    'featured-float.js',
 ];
 
 // Cache busting para styles.css (filemtime del bundle generado).

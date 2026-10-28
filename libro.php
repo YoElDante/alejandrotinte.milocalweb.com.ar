@@ -115,7 +115,7 @@ require_once __DIR__ . '/includes/header.php';
                 <?php endif; ?>
             </div>
 
-            <div class="book-hero-body">
+            <header class="book-hero-head">
                 <p class="section-kicker">Libro</p>
                 <h1 class="book-page-title"><?= e($libro['titulo']) ?></h1>
 
@@ -126,45 +126,52 @@ require_once __DIR__ . '/includes/header.php';
                 <?php if ($meta): ?>
                 <p class="book-page-meta"><?= e(implode(' · ', $meta)) ?></p>
                 <?php endif; ?>
+            </header>
 
-                <?php if ($parrafos): ?>
-                <div class="book-page-text">
-                    <?php foreach ($parrafos as $parrafo): ?>
-                    <p><?= e($parrafo) ?></p>
-                    <?php endforeach; ?>
-                </div>
-                <?php else: ?>
-                <p class="book-page-text"><span class="pending">Sinopsis pendiente</span></p>
+            <div class="book-page-actions">
+                <a href="<?= e($consultar) ?>"
+                   class="btn btn--whatsapp"
+                   <?= $wa_hay ? 'target="_blank" rel="noopener noreferrer"' : '' ?>>
+                    <?= wa_icon() ?>
+                    Pedir tu copia
+                </a>
+
+                <?php if ($amazon !== ''): ?>
+                <?php $amazon_logo = amazon_icon(); ?>
+                <a href="<?= e($amazon) ?>"
+                   class="btn btn--amazon"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Conseguir en <?= $amazon_logo !== '' ? $amazon_logo : 'Amazon' ?>
+                </a>
                 <?php endif; ?>
-
-                <div class="book-page-actions">
-                    <a href="<?= e($consultar) ?>"
-                       class="btn btn--whatsapp"
-                       <?= $wa_hay ? 'target="_blank" rel="noopener noreferrer"' : '' ?>>
-                        <?= wa_icon() ?>
-                        Pedir tu copia
-                    </a>
-
-                    <?php if ($amazon !== ''): ?>
-                    <?php $amazon_logo = amazon_icon(); ?>
-                    <a href="<?= e($amazon) ?>"
-                       class="btn btn--amazon"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Conseguir en <?= $amazon_logo !== '' ? $amazon_logo : 'Amazon' ?>
-                    </a>
-                    <?php endif; ?>
-                </div>
-
-                <p class="book-page-back">
-                    <a href="/#libros" class="book-back">
-                        <?= svg_icon('chevron-left') ?>
-                        Volver a las obras
-                    </a>
-                </p>
             </div>
+
+            <?php if ($parrafos): ?>
+            <div class="book-page-text">
+                <?php foreach ($parrafos as $parrafo): ?>
+                <p><?= e($parrafo) ?></p>
+                <?php endforeach; ?>
+            </div>
+            <?php else: ?>
+            <p class="book-page-text"><span class="pending">Sinopsis pendiente</span></p>
+            <?php endif; ?>
+
+            <p class="book-page-back">
+                <a href="/#libros" class="book-back">
+                    <?= svg_icon('chevron-left') ?>
+                    Volver a las obras
+                </a>
+            </p>
         </div>
     </div>
+
+    <?php
+    $flotante = (string) ($cliente['libros_flotantes'][$slug] ?? '');
+    if ($flotante !== '' && asset_existe($flotante)):
+    ?>
+    <img class="book-page-float" src="<?= e($flotante) ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <?php endif; ?>
 </article>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

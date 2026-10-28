@@ -32,6 +32,18 @@ $iniciales = mb_substr($iniciales, 0, 2);
                 <span><?= e($iniciales) ?></span>
             </div>
             <?php endif; ?>
+
+            <?php
+            $autor_flotante = (string) ($cliente['autor_flotante'] ?? '');
+            if ($autor_flotante !== '' && asset_existe($autor_flotante)):
+            ?>
+            <img class="about-media-float"
+                 src="<?= e($autor_flotante) ?>"
+                 alt=""
+                 aria-hidden="true"
+                 loading="lazy"
+                 decoding="async">
+            <?php endif; ?>
         </div>
 
         <div class="about-body">

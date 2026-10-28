@@ -25,8 +25,8 @@ if (empty($libros)) {
 
 $hay_portada = false;
 ?>
-<section class="section section--alt" id="libros">
-    <div class="container">
+<section class="section section--alt books-section" id="libros">
+    <div class="container books-container">
         <header class="section-head">
             <p class="section-kicker">Obra</p>
             <h2 class="section-title">Los libros</h2>
@@ -116,5 +116,12 @@ $hay_portada = false;
             </article>
             <?php endforeach; ?>
         </div>
+
+        <?php
+        $imagen_decor = (string) ($cliente['libros_imagen_decor'] ?? '');
+        if ($imagen_decor !== '' && asset_existe($imagen_decor)):
+        ?>
+        <img class="books-decor" src="<?= e($imagen_decor) ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <?php endif; ?>
     </div>
 </section>
