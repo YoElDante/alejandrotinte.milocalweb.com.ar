@@ -115,9 +115,17 @@
 
 /* ─── Overlay (fondo del menú mobile) ─────────────────────────────── */
 
+/* El header usa backdrop-filter, que lo convierte en el bloque contenedor
+   de sus hijos con position: fixed. Por eso el overlay no puede usar
+   inset: 0: quedaría del alto del header. Con height: 100vh cubre la
+   pantalla tanto si hereda ese contenedor como si no. */
+
 .navbar-overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   z-index: 99;
   opacity: 0;

@@ -1,5 +1,5 @@
 /**
- * Mobile hamburger menu — toggle, link close, overlay close
+ * Mobile hamburger menu — toggle, link close, overlay close, outside click, Esc
  */
 (function () {
   'use strict';
@@ -12,6 +12,10 @@
     navbar.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Abrir menú');
+  }
+
+  function isOpen() {
+    return navbar.classList.contains('open');
   }
 
   toggle.addEventListener('click', function () {
@@ -27,4 +31,18 @@
   if (overlay) {
     overlay.addEventListener('click', closeMenu);
   }
+
+  /* Click fuera del menú: el overlay no siempre cubre toda la pantalla
+     (el header lo acota), así que se escucha a nivel documento. */
+  document.addEventListener('click', function (event) {
+    if (!isOpen()) return;
+    if (navbar.contains(event.target)) return;
+    closeMenu();
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape' || !isOpen()) return;
+    closeMenu();
+    toggle.focus();
+  });
 })();
