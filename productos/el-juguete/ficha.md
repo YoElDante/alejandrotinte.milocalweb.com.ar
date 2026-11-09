@@ -24,6 +24,8 @@
 | **Valoración** | pendiente |
 | **Amazon (libro)** | https://www.amazon.es/dp/B0HBXM93P8 |
 | **Amazon (todos los libros)** | https://www.amazon.es/stores/author/B0HBS1BVK9/allbooks |
+| **Google Play** | https://play.google.com/store/books/details?id=2dIEEgAAQBAJ |
+| **Google Libros** | https://books.google.com/books?id=2dIEEgAAQBAJ |
 | **Portada** | `portada.webp` / `portada-600.webp` |
 | **PDF** | `el-juguete.pdf` (no público) |
 | **Estado** | Publicado en Kindle |

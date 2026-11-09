@@ -24,6 +24,8 @@
 | **Valoración** | pendiente |
 | **Amazon (libro)** | https://www.amazon.es/dp/B0HCSV4G62 |
 | **Amazon (todos los libros)** | https://www.amazon.es/stores/author/B0HBS1BVK9/allbooks |
+| **Google Play** | https://play.google.com/store/books/details?id=iOQUEgAAQBAJ |
+| **Google Libros** | https://books.google.com/books?id=iOQUEgAAQBAJ |
 | **Portada** | `portada.webp` / `portada-600.webp` |
 | **PDF** | `donde-carajos-esta-el-atizador.pdf` (no público) |
 | **Estado** | Publicado en Kindle |
@@ -57,7 +59,9 @@ Archivo: `descripcion.txt` — 5 párrafos.
   Amazon dicen **"¿Dónde carajos está el atizador?"**. Se normalizó con signos de apertura,
   minúsculas y signo final, que es como está impreso.
 - El listado original del autor lo menciona como *"Donde Carajos Está el Atizador y Otras
-  Obsesiones"*. Verificar si ese es el título de otra edición o un error del listado.
+  Obsesiones"*. **Resuelto (09/11/2026)**: no es otra edición de este libro, sino una
+  antología independiente — *¿Dónde carajos está el atizador?... y otras obsesiones*
+  (Google Books ID `TYkFEgAAQBAJ`), con ficha propia en `productos/`.
 - **Tono**: el texto juega con lo cómico y lo absurdo, pero deriva en obsesión y deterioro
   familiar. No venderlo como comedia liviana.
 - La descripción **no revela** qué pasó con el atizador. No agregar el desenlace: es el motor
@@ -69,5 +73,6 @@ Archivo: `descripcion.txt` — 5 párrafos.
 
 - [ ] ISBN, precio, medidas, edición y año.
 - [ ] Confirmar páginas de la edición impresa (20 es el PDF).
-- [ ] Confirmar si "y Otras Obsesiones" forma parte del título en alguna edición.
+- [x] Confirmar si "y Otras Obsesiones" forma parte del título en alguna edición.
+  → Es una antología independiente, no una edición de este libro.
 - [ ] Link corto/limpio de Amazon: verificar que `amazon.es/dp/B0HCSV4G62` resuelva bien.

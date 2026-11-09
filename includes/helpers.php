@@ -73,6 +73,52 @@ function svg_icon(string $nombre): string
 }
 
 /**
+ * Redes oficiales del cliente (cuentas profesionales del escritor).
+ *
+ * Si `redes_oficiales` está vacío, cae a `redes` para que el sitio siga
+ * mostrando los enlaces disponibles mientras se cargan las cuentas nuevas.
+ *
+ * @return array<string, string>
+ */
+function redes_oficiales(array $cliente): array
+{
+    $limpiar = static function (array $redes): array {
+        return array_filter($redes, static function ($url) {
+            return trim((string) $url) !== '';
+        });
+    };
+
+    $oficiales = $limpiar($cliente['redes_oficiales'] ?? []);
+
+    return $oficiales !== [] ? $oficiales : $limpiar($cliente['redes'] ?? []);
+}
+
+/**
+ * Todas las redes del autor: primero las oficiales y después las personales.
+ *
+ * Devuelve una lista plana de URLs sin duplicados, pensada para el JSON-LD
+ * (`sameAs`). El orden importa: las cuentas oficiales van primero.
+ *
+ * @return string[]
+ */
+function redes_todas(array $cliente): array
+{
+    $urls = [];
+
+    foreach ([redes_oficiales($cliente), $cliente['redes'] ?? []] as $grupo) {
+        foreach ($grupo as $url) {
+            $url = trim((string) $url);
+
+            if ($url !== '' && !in_array($url, $urls, true)) {
+                $urls[] = $url;
+            }
+        }
+    }
+
+    return $urls;
+}
+
+/**
  * Icono SVG de WhatsApp.
  */
 function wa_icon(): string
@@ -86,6 +132,14 @@ function wa_icon(): string
 function amazon_icon(): string
 {
     return svg_icon('amazon');
+}
+
+/**
+ * Logo de Google Play para el botón de compra.
+ */
+function google_play_icon(): string
+{
+    return svg_icon('google-play');
 }
 
 /**

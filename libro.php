@@ -51,6 +51,7 @@ if ($libro === null) {
 $descripcion = libro_descripcion($libro);
 $parrafos    = texto_parrafos($descripcion);
 $amazon      = (string) ($cliente['amazon'][$slug] ?? '');
+$google_play = (string) ($cliente['google_play'][$slug] ?? '');
 $url_libro   = '/libros/' . $slug;
 $wa_hay      = wa_disponible($cliente);
 $consultar   = wa_link($cliente, 'Hola! Quiero pedir mi copia de "' . $libro['titulo'] . '"');
@@ -68,6 +69,9 @@ if (!empty($libro['anio'])) {
 }
 if ($amazon !== '') {
     $meta[] = 'Disponible en Kindle';
+}
+if ($google_play !== '') {
+    $meta[] = 'Disponible en Google Play';
 }
 
 $resumen_seo = $parrafos[0] ?? (string) ($libro['sinopsis'] ?? '');
@@ -117,6 +121,11 @@ require_once __DIR__ . '/includes/header.php';
 
             <header class="book-hero-head">
                 <p class="section-kicker">Libro</p>
+
+                <?php if (!empty($libro['novedad'])): ?>
+                <p class="book-flag book-flag--inline">Novedad</p>
+                <?php endif; ?>
+
                 <h1 class="book-page-title"><?= e($libro['titulo']) ?></h1>
 
                 <?php if (!empty($libro['subtitulo'])): ?>
@@ -145,6 +154,17 @@ require_once __DIR__ . '/includes/header.php';
                     Conseguir en <?= $amazon_logo !== '' ? $amazon_logo : 'Amazon' ?>
                 </a>
                 <?php endif; ?>
+
+                <?php if ($google_play !== ''): ?>
+                <?php $google_logo = google_play_icon(); ?>
+                <a href="<?= e($google_play) ?>"
+                   class="btn btn--google"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <?= $google_logo !== '' ? $google_logo : '' ?>
+                    Comprar en Google Play
+                </a>
+                <?php endif; ?>
             </div>
 
             <?php if ($parrafos): ?>
@@ -168,9 +188,11 @@ require_once __DIR__ . '/includes/header.php';
 
     <?php
     $flotante = (string) ($cliente['libros_flotantes'][$slug] ?? '');
+    $rotacion = (int) ($cliente['libros_flotantes_rotacion'][$slug] ?? 0);
     if ($flotante !== '' && asset_existe($flotante)):
+        $float_clase = 'book-page-float' . (abs($rotacion) >= 45 ? ' book-page-float--side' : '');
     ?>
-    <img class="book-page-float" src="<?= e($flotante) ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="<?= e($float_clase) ?>" src="<?= e($flotante) ?>" alt="" aria-hidden="true" loading="lazy" decoding="async"<?= $rotacion !== 0 ? ' style="--float-rotate: ' . $rotacion . 'deg"' : '' ?>>
     <?php endif; ?>
 </article>
 

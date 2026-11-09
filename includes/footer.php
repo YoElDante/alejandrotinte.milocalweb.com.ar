@@ -10,8 +10,24 @@
 
 $wa_full     = wa_link($cliente);
 $wa_hay      = wa_disponible($cliente);
-$redes       = array_filter($cliente['redes'] ?? []);
 $email       = (string) ($cliente['email'] ?? '');
+
+// Redes oficiales (primarias) y personales (secundarias, sin repetir URLs).
+$redes_oficiales  = redes_oficiales($cliente);
+$urls_oficiales   = array_map(static function ($url) {
+    return trim((string) $url);
+}, array_values($redes_oficiales));
+$redes_personales = array_filter($cliente['redes'] ?? [], static function ($url) use ($urls_oficiales) {
+    return trim((string) $url) !== '' && !in_array(trim((string) $url), $urls_oficiales, true);
+});
+
+$red_social_meta = [
+    'instagram' => ['Instagram', 'instagram-filled'],
+    'facebook'  => ['Facebook', 'facebook'],
+    'linkedin'  => ['LinkedIn', 'linkedin'],
+    'tiktok'    => ['TikTok', 'tiktok'],
+    'web'       => ['Sitio web', 'globe'],
+];
 $logo_src    = (string) ($cliente['logo_img'] ?? '');
 $wa_target   = $wa_hay ? 'target="_blank" rel="noopener noreferrer"' : '';
 $mlw_msg     = 'Hola! Quiero una web como la de ' . ($cliente['nombre'] ?? '') . ' para mi proyecto';
@@ -35,54 +51,42 @@ $mlw_msg     = 'Hola! Quiero una web como la de ' . ($cliente['nombre'] ?? '') .
             </div>
 
             <div class="footer-social">
+                <?php if ($redes_oficiales): ?>
                 <div class="footer-social-group">
                     <h4>Redes del autor</h4>
                     <div class="social-links">
-                        <!-- Placeholders hasta tener las cuentas profesionales. -->
-                        <span class="social-link social-link--instagram social-link--pending"
-                              role="img"
-                              aria-label="Instagram del autor (próximamente)"
-                              title="Instagram del autor — próximamente">
-                            <?= svg_icon('instagram-filled') ?>
-                        </span>
-                        <span class="social-link social-link--whatsapp social-link--pending"
-                              role="img"
-                              aria-label="WhatsApp del autor (próximamente)"
-                              title="WhatsApp del autor — próximamente">
-                            <?= svg_icon('whatsapp') ?>
-                        </span>
+                        <?php foreach ($redes_oficiales as $clave => $url): ?>
+                        <?php
+                            $meta = $red_social_meta[$clave] ?? [$clave, ''];
+                            $nombre = $meta[0];
+                            $icono  = $meta[1];
+                        ?>
+                        <a href="<?= e($url) ?>" target="_blank" rel="noopener noreferrer"
+                           class="social-link social-link--<?= e($clave) ?>"
+                           aria-label="<?= e($nombre) ?> oficial de <?= e($cliente['nombre']) ?>">
+                            <?= $icono !== '' ? svg_icon($icono) : '' ?>
+                        </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
+                <?php endif; ?>
 
-                <?php if ($redes): ?>
+                <?php if ($redes_personales): ?>
                 <div class="footer-social-group">
                     <h4>Redes personales</h4>
                     <div class="social-links">
-                        <?php if (!empty($redes['instagram'])): ?>
-                        <a href="<?= e($redes['instagram']) ?>" target="_blank" rel="noopener noreferrer" class="social-link social-link--instagram" aria-label="Instagram personal de Alejandro Tinte">
-                            <?= svg_icon('instagram-filled') ?>
+                        <?php foreach ($redes_personales as $clave => $url): ?>
+                        <?php
+                            $meta = $red_social_meta[$clave] ?? [$clave, ''];
+                            $nombre = $meta[0];
+                            $icono  = $meta[1];
+                        ?>
+                        <a href="<?= e($url) ?>" target="_blank" rel="noopener noreferrer"
+                           class="social-link social-link--<?= e($clave) ?>"
+                           aria-label="<?= e($nombre) ?> personal de <?= e($cliente['nombre']) ?>">
+                            <?= $icono !== '' ? svg_icon($icono) : '' ?>
                         </a>
-                        <?php endif; ?>
-                        <?php if (!empty($redes['facebook'])): ?>
-                        <a href="<?= e($redes['facebook']) ?>" target="_blank" rel="noopener noreferrer" class="social-link social-link--facebook" aria-label="Facebook personal de Alejandro Tinte">
-                            <?= svg_icon('facebook') ?>
-                        </a>
-                        <?php endif; ?>
-                        <?php if (!empty($redes['linkedin'])): ?>
-                        <a href="<?= e($redes['linkedin']) ?>" target="_blank" rel="noopener noreferrer" class="social-link social-link--linkedin" aria-label="LinkedIn de Alejandro Tinte">
-                            <?= svg_icon('linkedin') ?>
-                        </a>
-                        <?php endif; ?>
-                        <?php if (!empty($redes['tiktok'])): ?>
-                        <a href="<?= e($redes['tiktok']) ?>" target="_blank" rel="noopener noreferrer" class="social-link social-link--tiktok" aria-label="TikTok de Alejandro Tinte">
-                            <?= svg_icon('tiktok') ?>
-                        </a>
-                        <?php endif; ?>
-                        <?php if (!empty($redes['web'])): ?>
-                        <a href="<?= e($redes['web']) ?>" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Sitio Web">
-                            <?= svg_icon('globe') ?>
-                        </a>
-                        <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <?php endif; ?>

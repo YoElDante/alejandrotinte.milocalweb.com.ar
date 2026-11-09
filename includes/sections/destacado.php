@@ -27,9 +27,10 @@ if ($libro === null) {
     return;
 }
 
-$parrafos  = texto_parrafos(libro_descripcion($libro));
-$amazon    = (string) ($cliente['amazon'][$slug_destacado] ?? '');
-$wa_hay    = wa_disponible($cliente);
+$parrafos    = texto_parrafos(libro_descripcion($libro));
+$amazon      = (string) ($cliente['amazon'][$slug_destacado] ?? '');
+$google_play = (string) ($cliente['google_play'][$slug_destacado] ?? '');
+$wa_hay      = wa_disponible($cliente);
 $url_libro = '/libros/' . $libro['slug'];
 $consultar = wa_link($cliente, 'Hola! Quiero pedir mi copia de "' . $libro['titulo'] . '"');
 
@@ -88,6 +89,17 @@ $flotante = asset_existe($flotante) ? $flotante : '';
                    target="_blank"
                    rel="noopener noreferrer">
                     Conseguir en <?= $amazon_logo !== '' ? $amazon_logo : 'Amazon' ?>
+                </a>
+                <?php endif; ?>
+
+                <?php if ($google_play !== ''): ?>
+                <?php $google_logo = google_play_icon(); ?>
+                <a href="<?= e($google_play) ?>"
+                   class="btn btn--google"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <?= $google_logo !== '' ? $google_logo : '' ?>
+                    Comprar en Google Play
                 </a>
                 <?php endif; ?>
 

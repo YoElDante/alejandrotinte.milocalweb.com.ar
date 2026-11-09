@@ -24,6 +24,8 @@
 | **Valoración** | pendiente |
 | **Amazon (libro)** | https://www.amazon.es/dp/B0HF3BHWYX |
 | **Amazon (todos los libros)** | https://www.amazon.es/stores/author/B0HBS1BVK9/allbooks |
+| **Google Play** | https://play.google.com/store/books/details?id=uNMEEgAAQBAJ |
+| **Google Libros** | https://books.google.com/books?id=uNMEEgAAQBAJ |
 | **Portada** | `portada.webp` / `portada-600.webp` |
 | **PDF** | `perder-el-miedo.pdf` (no público) |
 | **Estado** | Publicado en Kindle |

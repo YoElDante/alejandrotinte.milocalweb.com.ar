@@ -3,13 +3,23 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://alejandrotinte.milocalweb.com.ar/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>https://alejandrotinte.milocalweb.com.ar/libros/renacer-y-despegar</loc>
+        <lastmod>2026-11-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://alejandrotinte.milocalweb.com.ar/productos/renacer-y-despegar/portada-600.webp</image:loc>
+            <image:title>Renacer y despegar... a los 64</image:title>
+        </image:image>
+    </url>
+    <url>
         <loc>https://alejandrotinte.milocalweb.com.ar/libros/a-fuego-y-fierro</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -19,7 +29,7 @@
     </url>
     <url>
         <loc>https://alejandrotinte.milocalweb.com.ar/libros/cuestion-de-fe</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -29,7 +39,7 @@
     </url>
     <url>
         <loc>https://alejandrotinte.milocalweb.com.ar/libros/donde-carajos-esta-el-atizador</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -38,8 +48,18 @@
         </image:image>
     </url>
     <url>
+        <loc>https://alejandrotinte.milocalweb.com.ar/libros/donde-carajos-esta-el-atizador-y-otras-obsesiones</loc>
+        <lastmod>2026-11-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://alejandrotinte.milocalweb.com.ar/productos/donde-carajos-esta-el-atizador-y-otras-obsesiones/portada-600.webp</image:loc>
+            <image:title>¿Dónde carajos está el atizador?... y otras obsesiones</image:title>
+        </image:image>
+    </url>
+    <url>
         <loc>https://alejandrotinte.milocalweb.com.ar/libros/el-juguete</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -49,7 +69,7 @@
     </url>
     <url>
         <loc>https://alejandrotinte.milocalweb.com.ar/libros/la-libreria</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -59,7 +79,7 @@
     </url>
     <url>
         <loc>https://alejandrotinte.milocalweb.com.ar/libros/la-perla-del-irupe</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -68,8 +88,18 @@
         </image:image>
     </url>
     <url>
+        <loc>https://alejandrotinte.milocalweb.com.ar/libros/mi-amigo-trotta</loc>
+        <lastmod>2026-11-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://alejandrotinte.milocalweb.com.ar/productos/mi-amigo-trotta/portada-600.webp</image:loc>
+            <image:title>Mi amigo Trotta</image:title>
+        </image:image>
+    </url>
+    <url>
         <loc>https://alejandrotinte.milocalweb.com.ar/libros/perder-el-miedo</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -79,7 +109,7 @@
     </url>
     <url>
         <loc>https://alejandrotinte.milocalweb.com.ar/libros/sergio-el-marcado</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>

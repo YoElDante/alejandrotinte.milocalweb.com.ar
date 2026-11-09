@@ -26,6 +26,10 @@
   --color-amazon: #FFD814;
   --color-amazon-hover: #F7CA00;
 
+  /* Google Play: verde de marca y hover. */
+  --color-google-play: #01875F;
+  --color-google-play-hover: #016B4C;
+
   /* Mercado Pago: azul de marca. */
   --color-mercadopago: #009EE3;
   --color-mercadopago-hover: #0089CB;
@@ -237,6 +241,25 @@ h1, h2, h3, h4 {
 }
 
 .btn--amazon svg {
+  height: 1.15em;
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* Google Play: verde de marca con el logo a color. */
+
+.btn--google {
+  background: var(--color-google-play);
+  color: #fff;
+}
+
+.btn--google:hover {
+  background: var(--color-google-play-hover);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.btn--google svg {
   height: 1.15em;
   width: auto;
   flex-shrink: 0;

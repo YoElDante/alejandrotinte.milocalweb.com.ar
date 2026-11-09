@@ -45,12 +45,7 @@ $ld_autor = [
     'description' => strip_tags($seo_descripcion),
 ];
 
-$ld_sameas = array_values(array_filter(
-    array_map('strval', $cliente['redes'] ?? []),
-    static function ($url) {
-        return $url !== '';
-    }
-));
+$ld_sameas = redes_todas($cliente);
 if ($ld_sameas) {
     $ld_autor['sameAs'] = $ld_sameas;
 }

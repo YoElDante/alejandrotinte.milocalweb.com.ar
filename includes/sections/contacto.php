@@ -7,7 +7,15 @@
 
 $wa_hay = wa_disponible($cliente);
 $email  = (string) ($cliente['email'] ?? '');
-$redes  = array_filter($cliente['redes'] ?? []);
+$redes  = redes_oficiales($cliente);
+
+$red_social_meta = [
+    'instagram' => ['Instagram', 'instagram-filled'],
+    'facebook'  => ['Facebook', 'facebook'],
+    'linkedin'  => ['LinkedIn', 'linkedin'],
+    'tiktok'    => ['TikTok', 'tiktok'],
+    'web'       => ['Sitio web', 'globe'],
+];
 ?>
 <section class="section section--contact" id="contacto">
     <div class="container contact-box">
@@ -34,21 +42,18 @@ $redes  = array_filter($cliente['redes'] ?? []);
 
         <?php if ($redes): ?>
         <div class="social-links contact-social">
-            <?php if (!empty($redes['instagram'])): ?>
-            <a href="<?= e($redes['instagram']) ?>" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                <?php include $svg . 'instagram-filled.svg'; ?>
+            <?php foreach ($redes as $clave => $url): ?>
+            <?php
+                $meta = $red_social_meta[$clave] ?? [$clave, ''];
+                $nombre = $meta[0];
+                $icono  = $meta[1];
+            ?>
+            <a href="<?= e($url) ?>" target="_blank" rel="noopener noreferrer"
+               class="social-link social-link--<?= e($clave) ?>"
+               aria-label="<?= e($nombre) ?> oficial de <?= e($cliente['nombre']) ?>">
+                <?= $icono !== '' ? svg_icon($icono) : '' ?>
             </a>
-            <?php endif; ?>
-            <?php if (!empty($redes['facebook'])): ?>
-            <a href="<?= e($redes['facebook']) ?>" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-                <?php include $svg . 'facebook.svg'; ?>
-            </a>
-            <?php endif; ?>
-            <?php if (!empty($redes['tiktok'])): ?>
-            <a href="<?= e($redes['tiktok']) ?>" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
-                <?php include $svg . 'tiktok.svg'; ?>
-            </a>
-            <?php endif; ?>
+            <?php endforeach; ?>
         </div>
         <?php endif; ?>
     </div>

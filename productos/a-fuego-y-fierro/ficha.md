@@ -24,6 +24,8 @@
 | **Valoración** | 4,50 / 5 — 2 valoraciones |
 | **Amazon (libro)** | https://www.amazon.es/dp/B0HBRDFZB3 |
 | **Amazon (todos los libros)** | https://www.amazon.es/stores/author/B0HBS1BVK9/allbooks |
+| **Google Play** | https://play.google.com/store/books/details?id=PtMEEgAAQBAJ |
+| **Google Libros** | https://books.google.com/books?id=PtMEEgAAQBAJ |
 | **Portada** | `portada.webp` / `portada-600.webp` |
 | **PDF** | `a-fuego-y-fierro.pdf` (no público) |
 | **Estado** | Publicado |

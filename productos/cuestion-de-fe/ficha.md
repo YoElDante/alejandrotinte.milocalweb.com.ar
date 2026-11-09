@@ -24,6 +24,8 @@
 | **Valoración** | pendiente |
 | **Amazon (libro)** | https://www.amazon.es/dp/B0HBSVFQJG |
 | **Amazon (todos los libros)** | https://www.amazon.es/stores/author/B0HBS1BVK9/allbooks |
+| **Google Play** | https://play.google.com/store/books/details?id=_bcEEgAAQBAJ |
+| **Google Libros** | https://books.google.com/books?id=_bcEEgAAQBAJ |
 | **Portada** | `portada.webp` / `portada-600.webp` |
 | **PDF** | `cuestion-de-fe.pdf` (no público) |
 | **Estado** | Publicado en Kindle |

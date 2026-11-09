@@ -24,6 +24,8 @@
 | **Valoración** | pendiente |
 | **Amazon (libro)** | https://www.amazon.es/dp/B0HF5569B5 |
 | **Amazon (todos los libros)** | https://www.amazon.es/stores/author/B0HBS1BVK9/allbooks |
+| **Google Play** | pendiente — no figura en el listado de Google Play del autor |
+| **Google Libros** | pendiente |
 | **Portada** | `portada.webp` / `portada-600.webp` |
 | **PDF** | `la-libreria.pdf` (no público) |
 | **Estado** | Publicado en Kindle |

@@ -13,19 +13,34 @@ $libros      = $cliente['libros'] ?? [];
 $pdf_publico = !empty($cliente['libros_pdf_publico']);
 $wa_hay      = wa_disponible($cliente);
 $destacado   = (string) ($cliente['libro_destacado'] ?? '');
+$antologia_slug = (string) ($cliente['libro_antologia'] ?? '');
+
+// La antología ocupa un bloque propio al final de la sección.
+$antologia = null;
+if ($antologia_slug !== '') {
+    foreach ($libros as $candidato) {
+        if (($candidato['slug'] ?? '') === $antologia_slug) {
+            $antologia = $candidato;
+            break;
+        }
+    }
+}
 
 // El libro destacado tiene su propia sección: no se repite en la grilla.
-$libros = array_values(array_filter($libros, static function ($libro) use ($destacado) {
-    return ($libro['slug'] ?? '') !== $destacado;
+$libros = array_values(array_filter($libros, static function ($libro) use ($destacado, $antologia_slug) {
+    $slug = (string) ($libro['slug'] ?? '');
+
+    return $slug !== $destacado && $slug !== $antologia_slug;
 }));
 
-if (empty($libros)) {
+if (empty($libros) && $antologia === null) {
     return;
 }
 
 $hay_portada = false;
+$section_clases = 'section section--alt books-section';
 ?>
-<section class="section section--alt books-section" id="libros">
+<section class="<?= e($section_clases) ?>" id="libros">
     <div class="container books-container">
         <header class="section-head">
             <p class="section-kicker">Obra</p>
@@ -83,6 +98,10 @@ $hay_portada = false;
                 <?php endif; ?>
 
                 <div class="book-body">
+                    <?php if (!empty($libro['novedad'])): ?>
+                    <p class="book-flag">Novedad</p>
+                    <?php endif; ?>
+
                     <h3 class="book-title"><?= e($libro['titulo']) ?></h3>
 
                     <?php if ($meta): ?>
@@ -115,13 +134,93 @@ $hay_portada = false;
                 </div>
             </article>
             <?php endforeach; ?>
+
+            <?php
+            // Imagen de cierre de la sección: no es una card. El JS decide si
+            // ocupa el hueco libre de la última fila o si va abajo como divisor.
+            $imagen_decor = (string) ($cliente['libros_imagen_decor'] ?? '');
+            if ($imagen_decor !== '' && asset_existe($imagen_decor)):
+            ?>
+            <img class="books-decor" src="<?= e($imagen_decor) ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <?php endif; ?>
         </div>
 
+        <?php if ($antologia !== null): ?>
         <?php
-        $imagen_decor = (string) ($cliente['libros_imagen_decor'] ?? '');
-        if ($imagen_decor !== '' && asset_existe($imagen_decor)):
+            $ant_slug      = (string) $antologia['slug'];
+            $ant_url       = '/libros/' . $ant_slug;
+            $ant_full      = (string) ($antologia['portada'] ?? '');
+            $ant_thumb     = (string) ($antologia['portada_600'] ?? '');
+            $ant_portada   = asset_existe($ant_thumb) ? $ant_thumb : (asset_existe($ant_full) ? $ant_full : '');
+            $ant_arte      = (string) ($cliente['libro_antologia_imagen'] ?? '');
+            $ant_arte      = asset_existe($ant_arte) ? $ant_arte : '';
+            $ant_parrafos  = texto_parrafos(libro_descripcion($antologia));
+            $ant_resumen   = implode(' ', array_slice($ant_parrafos, 0, 2));
+            $ant_play      = (string) ($cliente['google_play'][$ant_slug] ?? '');
+            $ant_consultar = wa_link($cliente, 'Hola! Quiero pedir mi copia de "' . $antologia['titulo'] . '"');
+            $ant_alt       = 'Portada de ' . $antologia['titulo'] . ' — ' . $cliente['nombre'];
         ?>
-        <img class="books-decor" src="<?= e($imagen_decor) ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <aside class="books-collection" aria-labelledby="antologia-titulo">
+            <div class="books-collection-media">
+                <?php if ($ant_portada !== ''): ?>
+                <a class="books-collection-cover"
+                   href="<?= e($ant_url) ?>"
+                   aria-label="Ver la ficha de <?= e($antologia['titulo']) ?>">
+                    <img src="<?= e($ant_portada) ?>"
+                         alt="<?= e($ant_alt) ?>"
+                         loading="lazy"
+                         decoding="async"
+                         width="600" height="900">
+                </a>
+                <?php endif; ?>
+
+                <?php if ($ant_arte !== ''): ?>
+                <img class="books-collection-float"
+                     src="<?= e($ant_arte) ?>"
+                     alt=""
+                     aria-hidden="true"
+                     loading="lazy"
+                     decoding="async">
+                <?php endif; ?>
+            </div>
+
+            <div class="books-collection-body">
+                <p class="section-kicker">Antología</p>
+                <h3 class="books-collection-title" id="antologia-titulo"><?= e($antologia['titulo']) ?></h3>
+
+                <?php if (!empty($antologia['subtitulo'])): ?>
+                <p class="books-collection-subtitle"><?= e($antologia['subtitulo']) ?></p>
+                <?php endif; ?>
+
+                <?php if ($ant_resumen !== ''): ?>
+                <p class="books-collection-text"><?= e($ant_resumen) ?></p>
+                <?php endif; ?>
+
+                <div class="books-collection-actions">
+                    <a href="<?= e($ant_url) ?>" class="book-btn book-btn--more">
+                        <?= svg_icon('book-open') ?>
+                        Conocer la antología
+                    </a>
+
+                    <?php if ($ant_play !== ''): ?>
+                    <a href="<?= e($ant_play) ?>"
+                       class="btn btn--google"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <?= google_play_icon() ?>
+                        Comprar en Google Play
+                    </a>
+                    <?php endif; ?>
+
+                    <a href="<?= e($ant_consultar) ?>"
+                       class="btn btn--whatsapp"
+                       <?= $wa_hay ? 'target="_blank" rel="noopener noreferrer"' : '' ?>>
+                        <?= wa_icon() ?>
+                        Pedir tu copia
+                    </a>
+                </div>
+            </div>
+        </aside>
         <?php endif; ?>
     </div>
 </section>
