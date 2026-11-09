@@ -45,8 +45,8 @@ $flotante = asset_existe($flotante) ? $flotante : '';
     <div class="featured-effects" aria-hidden="true"></div>
 
     <div class="container featured-inner">
-        <?php if ($portada !== ''): ?>
         <div class="featured-media">
+            <?php if ($portada !== ''): ?>
             <a href="<?= e($url_libro) ?>" class="featured-cover" aria-label="Ver la ficha de <?= e($libro['titulo']) ?>">
                 <img src="<?= e($portada_grilla) ?>"
                      alt="<?= e($alt) ?>"
@@ -54,8 +54,13 @@ $flotante = asset_existe($flotante) ? $flotante : '';
                      loading="eager"
                      decoding="async">
             </a>
+            <?php endif; ?>
+
+            <a href="<?= e($url_libro) ?>" class="featured-more">
+                <?= svg_icon('book-open') ?>
+                Ver ficha completa
+            </a>
         </div>
-        <?php endif; ?>
 
         <div class="featured-body">
             <p class="section-kicker">Obra destacada</p>
@@ -102,11 +107,6 @@ $flotante = asset_existe($flotante) ? $flotante : '';
                     Comprar en Google Play
                 </a>
                 <?php endif; ?>
-
-                <a href="<?= e($url_libro) ?>" class="book-btn book-btn--more">
-                    <?= svg_icon('book-open') ?>
-                    Ver ficha completa
-                </a>
             </div>
         </div>
 

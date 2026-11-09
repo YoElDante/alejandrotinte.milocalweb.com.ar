@@ -39,6 +39,36 @@
   grid-area: media;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.featured-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: center;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.featured-more svg {
+  flex-shrink: 0;
+  font-size: 17px;
+}
+
+.featured-more:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
 }
 
 .featured-body {
