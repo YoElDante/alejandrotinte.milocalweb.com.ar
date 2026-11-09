@@ -160,7 +160,7 @@ $section_clases = 'section section--alt books-section';
             $ant_consultar = wa_link($cliente, 'Hola! Quiero pedir mi copia de "' . $antologia['titulo'] . '"');
             $ant_alt       = 'Portada de ' . $antologia['titulo'] . ' — ' . $cliente['nombre'];
         ?>
-        <aside class="books-collection" aria-labelledby="antologia-titulo">
+        <aside class="books-collection" id="antologia" aria-labelledby="antologia-titulo">
             <div class="books-collection-media">
                 <?php if ($ant_portada !== ''): ?>
                 <a class="books-collection-cover"

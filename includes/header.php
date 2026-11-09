@@ -260,6 +260,7 @@ $ld_json = [
 
             <ul class="navbar-menu" id="menu-principal">
                 <li><a href="<?= $nav_base ?>#inicio">Inicio</a></li>
+                <li><a href="<?= $nav_base ?>#destacado">Obra destacada</a></li>
                 <li><a href="<?= $nav_base ?>#libros">Libros</a></li>
                 <li><a href="<?= $nav_base ?>#proyectos">Proyectos</a></li>
                 <li><a href="<?= $nav_base ?>#autor">El autor</a></li>
