@@ -990,6 +990,18 @@
   width: clamp(150px, 16vw, 210px);
 }
 
+/* En escritorio ancho (la guitarra acostada tapa los botones), el flotante
+   acostado vuelve a estar parado con la leve inclinación estándar. El
+   !important vence al --float-rotate inline que pone libro.php (-90deg). */
+@media (min-width: 1151px) {
+  .book-page-float--side {
+    --float-rotate: -20deg !important;
+    right: clamp(1rem, 5vw, 3rem);
+    bottom: 2rem;
+    width: clamp(140px, 18vw, 240px);
+  }
+}
+
 .book-hero-cover img {
   width: 100%;
   border-radius: var(--radius-lg);
