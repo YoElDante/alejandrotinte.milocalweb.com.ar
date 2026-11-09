@@ -157,13 +157,15 @@ require_once __DIR__ . '/includes/header.php';
 
                 <?php if ($google_play !== ''): ?>
                 <?php $google_logo = google_play_icon(); ?>
-                <a href="<?= e($google_play) ?>"
-                   class="btn btn--google"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    <?= $google_logo !== '' ? $google_logo : '' ?>
-                    Comprar en Google Play
-                </a>
+                <div class="book-page-actions-break">
+                    <a href="<?= e($google_play) ?>"
+                       class="btn btn--google"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <?= $google_logo !== '' ? $google_logo : '' ?>
+                        Comprar en Google Play
+                    </a>
+                </div>
                 <?php endif; ?>
             </div>
 

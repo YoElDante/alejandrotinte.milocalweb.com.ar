@@ -1058,6 +1058,13 @@
   margin-top: 2rem;
 }
 
+/* El botón de Google Play baja a su propia fila (ancho natural, alineado a
+   la izquierda) para que la hilera no se estire en horizontal hasta tapar
+   el flotante decorativo. El contenedor fuerza el salto de línea. */
+.book-page-actions-break {
+  flex-basis: 100%;
+}
+
 .book-page-back {
   margin-top: 2.5rem;
   font-size: 0.85rem;
