@@ -213,6 +213,7 @@
 
 .books-decor.books-decor--gap {
   grid-column: auto;
+  align-self: end;
   width: 100%;
   max-width: 220px;
   margin-top: 0;
