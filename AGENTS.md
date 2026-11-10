@@ -262,3 +262,13 @@ form-action 'self';
 ---
 
 > **Convención de nombres de assets, mapeo config.php, y checklist**: ver skill `milocalweb-landing`.
+
+---
+
+## Gestión de documentación (política MiLocalWeb)
+
+- `docs/estado-actual.md` es el ÚNICO documento de estado por proyecto: se actualiza in-place; solo se crea uno nuevo en una auditoría nueva (el veredicto entra en `_audit/` y se anota en `estado-actual.md`).
+- Los documentos vencidos (tareas resueltas, utilidad suplantada por otro doc, mediciones viejas) NO se editan para "actualizarlos" ni se borran: se mueven a `docs/_archive/` con cabecera de archivado al inicio (fecha + motivo + link al documento que lo reemplaza) y una fila en el índice `docs/_archive/README.md`.
+- Los artefactos crudos no-Markdown (ej. `.txt` de JSON de Lighthouse) no admiten cabecera: su fecha y motivo se registran solo en el índice.
+- No archivar: `ficha-cliente.md`, `informe_estilo_*.md`, `guia-relevamiento.md` ni los 5 permanentes (README, estado-actual, arquitectura, mapa-sitio, resumen-documentacion).
+- Procedimiento completo y plantillas: skill `milocalweb-docs`.
