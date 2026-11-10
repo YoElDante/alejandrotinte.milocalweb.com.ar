@@ -15,6 +15,10 @@
 
   var ticking = false;
 
+  /**
+   * Recalcula el desplazamiento de cada flotante respecto del viewport.
+   * El rango se limita a ±24px para que el efecto sea imperceptible.
+   */
   function update() {
     ticking = false;
 
@@ -31,6 +35,8 @@
     });
   }
 
+  // requestAnimationFrame + flag evita recalcular en cada evento de scroll:
+  // se procesa como máximo una vez por frame. `passive` no bloquea el scroll.
   window.addEventListener('scroll', function () {
     if (!ticking) {
       ticking = true;

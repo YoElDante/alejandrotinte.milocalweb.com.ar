@@ -1,0 +1,32 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Alejandro Tinte — Sección Contacto
+   Bloque centrado con WhatsApp/email y redes oficiales. Reutiliza .btn y
+   .social-links definidos en base.css y footer.css.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Mismo degradado que hero/destacado para cerrar la página con coherencia. */
+.section--contact {
+  background: linear-gradient(160deg, var(--color-hero-bg-start) 0%, var(--color-hero-bg-end) 100%);
+}
+
+.contact-box {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.8rem;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.contact-social {
+  margin-top: 1rem;
+}
+

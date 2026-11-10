@@ -1,0 +1,34 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Alejandro Tinte — Animaciones de entrada
+   Stagger sutil del contenido del hero. `both` mantiene el estado inicial
+   antes de arrancar y el final después; se desactiva con reduced-motion.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ─── Animación de entrada ────────────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-inner > * {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+/* Delay escalonado de 50ms por hijo para que la entrada se lea en cascada. */
+.hero-inner > :nth-child(2) { animation-delay: 0.05s; }
+.hero-inner > :nth-child(3) { animation-delay: 0.1s; }
+.hero-inner > :nth-child(4) { animation-delay: 0.15s; }
+.hero-inner > :nth-child(5) { animation-delay: 0.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-inner > * {
+    animation: none;
+  }
+}

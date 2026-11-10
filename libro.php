@@ -10,9 +10,13 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
+// El slug llega por query string desde router.php / .htaccess. Se normaliza a
+// minúsculas y se descarta todo lo que no sea [a-z0-9-] para que no pueda
+// usarse como ruta de archivo ni inyectar HTML en la comparación.
 $slug = strtolower((string) ($_GET['slug'] ?? ''));
 $slug = preg_replace('/[^a-z0-9-]/', '', $slug);
 
+// La ficha se resuelve por comparación exacta contra config.php['libros'].
 $libro = null;
 foreach (($cliente['libros'] ?? []) as $candidato) {
     if (($candidato['slug'] ?? '') === $slug) {
@@ -24,6 +28,8 @@ foreach (($cliente['libros'] ?? []) as $candidato) {
 $nav_base = '/';
 
 // ─── 404 ────────────────────────────────────────────────────────
+// Slug inválido o inexistente: se responde 404 real (no redirect) para no
+// indexar URLs basura y se reutiliza el layout completo del sitio.
 if ($libro === null) {
     http_response_code(404);
 
@@ -48,6 +54,8 @@ if ($libro === null) {
 }
 
 // ─── Datos de la página ─────────────────────────────────────────
+// CTA de compra: cada tienda se resuelve por slug y solo se muestra si el
+// link existe. `$consultar` cae a #contacto cuando no hay WhatsApp cargado.
 $descripcion = libro_descripcion($libro);
 $parrafos    = texto_parrafos($descripcion);
 $amazon      = (string) ($cliente['amazon'][$slug] ?? '');
@@ -56,10 +64,13 @@ $url_libro   = '/libros/' . $slug;
 $wa_hay      = wa_disponible($cliente);
 $consultar   = wa_link($cliente, 'Hola! Quiero pedir mi copia de "' . $libro['titulo'] . '"');
 
+// La portada de 600px se usa en pantalla; la grande solo como destino del
+// lightbox y para og:image. Si falta la miniatura se cae a la imagen full.
 $portada_full  = asset_existe((string) ($libro['portada'] ?? '')) ? (string) $libro['portada'] : '';
 $portada_thumb = asset_existe((string) ($libro['portada_600'] ?? '')) ? (string) $libro['portada_600'] : $portada_full;
 $alt           = 'Portada de ' . $libro['titulo'] . ' — ' . $cliente['nombre'];
 
+// Línea de metadatos: solo se agregan los datos realmente cargados.
 $meta = [];
 if (!empty($libro['paginas'])) {
     $meta[] = (int) $libro['paginas'] . ' páginas';
@@ -77,11 +88,13 @@ if ($google_play !== '') {
 $resumen_seo = $parrafos[0] ?? (string) ($libro['sinopsis'] ?? '');
 
 // ─── Variables que consume header.php ───────────────────────────
+// `$libro_actual` activa el modo ficha: header.php genera el JSON-LD de Book
+// + BreadcrumbList (en vez del catálogo completo) y ajusta canonical/OG.
 $libro_actual     = $libro;
 $libro_actual['descripcion'] = $descripcion;
 $page_title       = $libro['titulo'] . ' — ' . $cliente['nombre'];
 $page_descripcion = $resumen_seo;
-$page_canonical   = 'https://' . ($_SERVER['HTTP_HOST'] ?? 'alejandrotinte.milocalweb.com.ar') . $url_libro;
+$page_canonical   = 'https://' . ($cliente['dominio'] ?? 'alejandrotinte.milocalweb.com.ar') . $url_libro;
 $page_og_image    = $portada_full;
 
 require_once __DIR__ . '/includes/header.php';
@@ -189,6 +202,9 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 
     <?php
+    // Ilustración decorativa opcional por libro. La rotación llega como
+    // variable CSS inline (--float-rotate); si es >= 45° se usa la variante
+    // "side", que en desktop vuelve a enderezarse por CSS (ver 07-libro.css).
     $flotante = (string) ($cliente['libros_flotantes'][$slug] ?? '');
     $rotacion = (int) ($cliente['libros_flotantes_rotacion'][$slug] ?? 0);
     if ($flotante !== '' && asset_existe($flotante)):

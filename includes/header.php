@@ -16,7 +16,7 @@ $libro_actual = $libro_actual ?? null;
 $nav_base     = $nav_base ?? '';
 
 // ─── Variables SEO ──────────────────────────────────────────
-$seo_domain     = $_SERVER['HTTP_HOST'] ?? 'alejandrotinte.milocalweb.com.ar';
+$seo_domain     = (string) ($cliente['dominio'] ?? 'alejandrotinte.milocalweb.com.ar');
 $seo_base_url   = 'https://' . $seo_domain;
 $canonical_url  = $page_canonical ?? ($seo_base_url . '/');
 $seo_keywords   = $cliente['seo_keywords_primarias'] ?? 'Libros y relatos';
@@ -36,6 +36,9 @@ $favicon = (string) ($cliente['favicon'] ?? '');
 $favicon = asset_existe($favicon) ? $favicon : '';
 
 // ─── JSON-LD Structured Data ────────────────────────────────
+// Se arma un único @graph para que Google/AI puedan cruzar autor, libros,
+// breadcrumbs y sitio. Los @id son URLs absolutas estables: el Book referencia
+// al autor por @id en lugar de repetir todos sus datos.
 $ld_autor = [
     '@type'       => 'Person',
     '@id'         => $seo_base_url . '/#autor',
@@ -56,7 +59,8 @@ if (asset_existe((string) ($cliente['autor_foto'] ?? ''))) {
 $ld_graph = [$ld_autor];
 
 if ($libro_actual) {
-    // Ficha de libro: solo el Book de esta página + migas de pan.
+    // Ficha de libro: solo el Book de esta página + migas de pan. Se evita
+    // declarar el catálogo completo en cada ficha para no competir con la home.
     $book_url = $canonical_url;
     $book = [
         '@type'      => 'Book',
@@ -106,6 +110,8 @@ if ($libro_actual) {
         ],
     ];
 } else {
+    // Home: se declaran todos los libros, incluso los que no tienen portada
+    // (image es opcional). Así las keywords de cada título quedan indexables.
     foreach ($libros as $libro) {
         $book = [
             '@type'      => 'Book',
@@ -133,6 +139,8 @@ if ($libro_actual) {
     }
 }
 
+// Nodo del sitio. `author` identifica a MiLocalWeb como proveedor de la web
+// (no confundir con el autor literario, que ya vive en $ld_autor).
 $ld_graph[] = [
     '@type'       => 'WebSite',
     '@id'         => $seo_base_url . '/#website',
@@ -236,6 +244,8 @@ $ld_json = [
 <body>
     <a href="#contenido" class="skip-link">Saltar al contenido</a>
 
+    <?php /* Navegación principal: en fichas de libro `$nav_base` es "/" para que
+             los anclas vuelvan a la home y no busquen #seccion dentro de la ficha. */ ?>
     <header class="site-header">
         <nav class="navbar" role="navigation" aria-label="Navegación principal">
             <div class="navbar-brand<?= asset_existe((string) ($cliente['logo_img'] ?? '')) ? ' has-logo' : '' ?>">

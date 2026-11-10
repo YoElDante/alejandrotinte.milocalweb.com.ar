@@ -13,6 +13,11 @@ require_once __DIR__ . '/includes/bootstrap.php';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
+<?php
+// Orden de la home: presentación → obra destacada → catálogo → publicidad →
+// proyectos → autor → contacto → portfolio de MiLocalWeb. El header abre
+// <main> y el footer lo cierra.
+?>
 <?php require_once __DIR__ . '/includes/sections/hero.php'; ?>
 <?php require_once __DIR__ . '/includes/sections/destacado.php'; ?>
 <?php require_once __DIR__ . '/includes/sections/libros.php'; ?>

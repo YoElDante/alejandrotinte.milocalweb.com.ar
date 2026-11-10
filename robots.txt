@@ -1,11 +1,20 @@
 User-agent: *
 Allow: /
 
-# Archivos de código y assets fuente
+# Archivos de código, documentación interna y assets fuente
 Disallow: /includes/
 Disallow: /tools/
+Disallow: /_local/
+Disallow: /docs/
+Disallow: /config.php
+Disallow: /AGENTS.md
+Disallow: /README.md
 
-# PDFs de los libros: no indexar (las portadas sí, para búsqueda de imágenes)
+# PDFs y archivos de trabajo de los libros: no indexar ni rastrear.
+# Las portadas e imágenes sí se permiten para búsqueda de imágenes.
 Disallow: /*.pdf$
+Disallow: /productos/*.txt
+Disallow: /productos/*.md
+Disallow: /productos/*.docx
 
 Sitemap: https://alejandrotinte.milocalweb.com.ar/sitemap.xml

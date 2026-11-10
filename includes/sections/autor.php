@@ -2,6 +2,10 @@
 /**
  * Sección Sobre el autor.
  *
+ * Biografía en párrafos, retrato con fallback a iniciales, redes/CTA y una
+ * tarjeta de cierre que invita a la obra destacada. Todos los datos salen de
+ * config.php; las imágenes se validan con asset_existe().
+ *
  * @package MiLocalWeb\Clientes
  */
 
@@ -9,6 +13,8 @@ $bio       = array_filter((array) ($cliente['autor_bio'] ?? []));
 $foto      = (string) ($cliente['autor_foto'] ?? '');
 $wa_hay    = wa_disponible($cliente);
 
+// Si falta la foto, se arma un placeholder con las iniciales del nombre
+// (máximo dos letras) para que el bloque no quede vacío.
 $iniciales = '';
 foreach (preg_split('/\s+/', trim((string) $cliente['nombre'])) ?: [] as $palabra) {
     if ($palabra !== '') {
@@ -81,6 +87,8 @@ $iniciales = mb_substr($iniciales, 0, 2);
             </div>
 
             <?php
+            // La tarjeta final reutiliza el libro destacado de config.php:
+            // así el CTA del autor y la sección destacada siempre coinciden.
             $autor_imagen = (string) ($cliente['autor_imagen'] ?? '');
             $libro_cta    = null;
             $slug_cta     = (string) ($cliente['libro_destacado'] ?? '');

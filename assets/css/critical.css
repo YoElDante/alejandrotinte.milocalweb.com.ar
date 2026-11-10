@@ -2,6 +2,8 @@
    Alejandro Tinte — Critical CSS (above-the-fold)
    Se inyecta inline en <head> para eliminar render-blocking.
    Mantener sincronizado con base.css / navbar.css / hero.css.
+   No forma parte de assets/css/styles.css: build-css.php no lo incluye.
+   Solo cubre variables, reset, navbar, hero y sus breakpoints esenciales.
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {

@@ -1,0 +1,153 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Alejandro Tinte — Sección Sobre el autor
+   Retrato con flotante opcional, biografía y tarjeta de cierre hacia la obra
+   destacada. La columna de imagen se limita a 320px en desktop.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about-media-float {
+  width: clamp(170px, 100%, 280px);
+  height: auto;
+  margin-top: 1.25rem;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.4));
+}
+
+/* Aunque la foto original sea vertical (600x800), acá se recorta a cuadrado
+   con object-fit: cover para que el bloque de texto quede alineado. */
+.about-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+  box-shadow: var(--shadow-card);
+}
+
+.about-photo--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--color-hero-bg-end) 0%, var(--color-bg) 100%);
+}
+
+.about-photo--empty span {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: var(--color-primary-glow);
+  letter-spacing: 0.06em;
+}
+
+.about-body .section-title {
+  margin-bottom: 1rem;
+}
+
+.about-text {
+  color: var(--color-muted);
+}
+
+.about-text + .about-text {
+  margin-top: 1rem;
+}
+
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+}
+
+/* Imagen de cierre + invitación a la obra destacada. */
+.about-extra {
+  margin-top: 2rem;
+}
+
+.about-extra img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+}
+
+.about-cta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+/* La tapa manda el alto: el texto y los botones no la superan. */
+.about-cta-cover {
+  flex-shrink: 0;
+  width: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.about-cta-cover img {
+  width: 100%;
+  height: auto;
+}
+
+.about-cta-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.about-cta-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.about-cta-actions .btn {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.about-cta-actions .btn svg {
+  font-size: 15px;
+}
+
+/* Libro cerrado que se mueve apenas al pasar el mouse. */
+.btn--book svg {
+  transition: transform 0.25s ease;
+}
+
+.btn--book:hover svg {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.about-cta-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+

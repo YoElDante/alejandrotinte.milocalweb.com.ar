@@ -1,7 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Alejandro Tinte — Responsive
+   Estrategia desktop-down con dos cortes:
+     900px → tablet / menú hamburguesa y layouts de una columna.
+     600px → mobile chico: tipografía, grillas y flotantes más compactos.
+   critical.css solo replica los cortes del above-the-fold (hero/navbar).
    ═══════════════════════════════════════════════════════════════════════ */
 
+/* ─── Tablet y mobile grande ──────────────────────────────────────── */
 @media (max-width: 900px) {
   .hero {
     min-height: calc(100vh - 56px);
@@ -303,101 +308,4 @@
   }
 }
 
-@media (max-width: 600px) {
-  .section {
-    padding: 3.2rem 1rem;
-  }
-
-  .about-cta-cover {
-    width: 84px;
-  }
-
-  .about-cta-actions .btn {
-    padding: 0.5rem 0.6rem;
-    font-size: 0.8rem;
-  }
-
-  .navbar {
-    padding: 0.4rem 1rem;
-  }
-
-  .brand-logo {
-    height: 34px;
-  }
-
-  .navbar-brand.has-logo .brand-name {
-    display: none;
-  }
-
-  .hero-title {
-    font-size: 2.4rem;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-  }
-
-  .books-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1rem;
-  }
-
-  .books-decor {
-    width: clamp(96px, 28vw, 160px);
-    opacity: 0.75;
-  }
-
-  .book-page-float {
-    width: clamp(96px, 26vw, 160px);
-    right: 1rem;
-    bottom: 1rem;
-  }
-
-  .book-page-float--side {
-    width: clamp(100px, 30vw, 140px);
-    right: 2.5rem;
-  }
-
-  .books-collection-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .books-collection-actions .btn,
-  .books-collection-actions .book-btn {
-    width: 100%;
-  }
-
-  .book-body {
-    padding: 0.9rem 0.9rem 1rem;
-  }
-
-  .book-title {
-    font-size: 1.02rem;
-  }
-
-  .book-actions {
-    flex-direction: column;
-  }
-
-  .contact-actions {
-    width: 100%;
-    flex-direction: column;
-  }
-
-  .contact-actions .btn {
-    width: 100%;
-  }
-
-  .whatsapp-float {
-    width: 52px;
-    height: 52px;
-    bottom: 125px;
-    right: 20px;
-  }
-
-  .back-to-top {
-    bottom: 68px;
-    right: 20px;
-  }
-}
+/* ─── Mobile chico ────────────────────────────────────────────────── */

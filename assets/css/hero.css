@@ -1,7 +1,10 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Alejandro Tinte — Hero
+   Bloque above-the-fold: sus reglas base y el breakpoint de 900px también
+   viven en critical.css. Al tocar medidas, sincronizar ambos archivos.
    ═══════════════════════════════════════════════════════════════════════ */
 
+/* Altura relativa al viewport menos el header fijo (56px). */
 .hero {
   position: relative;
   overflow: hidden;

@@ -14,6 +14,12 @@
 
   var ticking = false;
 
+  /**
+   * Cuenta cuántas cards entran en la primera fila comparando su posición
+   * vertical. Evita depender de un breakpoint fijo en JS.
+   *
+   * @returns {number} Columnas efectivas de la grilla (mínimo 1).
+   */
   function columnas() {
     var cards = grid.querySelectorAll('.book-card');
     if (!cards.length) return 1;
@@ -29,6 +35,10 @@
     return total || 1;
   }
 
+  /**
+   * Decide si la imagen de cierre ocupa el hueco libre de la última fila
+   * (clase --gap) o si baja como divisor de ancho completo.
+   */
   function update() {
     ticking = false;
 
@@ -39,6 +49,9 @@
     decor.classList.toggle('books-decor--gap', huecoLibre);
   }
 
+  /**
+   * Agenda un recálculo en el próximo frame, sin duplicar tareas pendientes.
+   */
   function schedule() {
     if (ticking) return;
     ticking = true;

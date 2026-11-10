@@ -1,0 +1,66 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Alejandro Tinte — Lightbox de portadas (<dialog>)
+   El reset de <dialog> es necesario porque el elemento nativo trae margen,
+   borde y tamaños propios. z-index 300 lo deja sobre header y flotantes.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 2.5rem 1.5rem;
+  border: 0;
+  background: rgba(10, 8, 7, 0.94);
+  z-index: 300;
+}
+
+/* Solo cuando está abierto se activa el centrado flex. */
+.lightbox[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox::backdrop {
+  background: rgba(10, 8, 7, 0.85);
+}
+
+/* La imagen nunca supera el viewport menos el padding del diálogo. */
+.lightbox-img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 5rem);
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 17, 15, 0.85);
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  color: var(--color-text);
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lightbox-close:hover {
+  background: var(--color-primary);
+  color: #14110F;
+}
+

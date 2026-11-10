@@ -10,6 +10,8 @@
  */
 
 $libros      = $cliente['libros'] ?? [];
+// `libros_pdf_publico` es un interruptor de negocio: por defecto el PDF no se
+// expone y el CTA principal siempre es la consulta por WhatsApp.
 $pdf_publico = !empty($cliente['libros_pdf_publico']);
 $wa_hay      = wa_disponible($cliente);
 $destacado   = (string) ($cliente['libro_destacado'] ?? '');
@@ -115,6 +117,8 @@ $section_clases = 'section section--alt books-section';
                     <?php endif; ?>
 
                     <div class="book-actions">
+                        <?php /* El PDF solo se enlaza si el autor lo publicó y el
+                                 archivo existe; si no, queda únicamente WhatsApp. */ ?>
                         <?php if ($pdf_publico && $tiene_pdf): ?>
                         <a href="<?= e($libro['pdf']) ?>" class="book-btn" target="_blank" rel="noopener">
                             Leer libro
@@ -154,6 +158,8 @@ $section_clases = 'section section--alt books-section';
             $ant_portada   = asset_existe($ant_thumb) ? $ant_thumb : (asset_existe($ant_full) ? $ant_full : '');
             $ant_arte      = (string) ($cliente['libro_antologia_imagen'] ?? '');
             $ant_arte      = asset_existe($ant_arte) ? $ant_arte : '';
+            // La antología usa los dos primeros párrafos como resumen para
+            // dar contexto sin repetir la ficha completa.
             $ant_parrafos  = texto_parrafos(libro_descripcion($antologia));
             $ant_resumen   = implode(' ', array_slice($ant_parrafos, 0, 2));
             $ant_play      = (string) ($cliente['google_play'][$ant_slug] ?? '');

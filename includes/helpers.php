@@ -2,11 +2,18 @@
 /**
  * Helpers compartidos por la landing.
  *
+ * Funciones puras de apoyo para: escape de salida, links de WhatsApp,
+ * lectura de assets/descripciones y armado de resúmenes. No dependen de
+ * sesión ni de estado global; reciben `$cliente` o rutas por parámetro.
+ *
  * @package MiLocalWeb\Clientes
  */
 
 /**
  * Escapa un valor para imprimirlo dentro de HTML.
+ *
+ * @param mixed $value Valor a escapar (se castea a string).
+ * @return string Texto seguro para atributos y contenido HTML.
  */
 function e($value): string
 {
@@ -15,6 +22,9 @@ function e($value): string
 
 /**
  * Número de WhatsApp del cliente, solo dígitos.
+ *
+ * @param array $cliente Configuración del cliente.
+ * @return string Número listo para `wa.me` (sin +, espacios ni guiones).
  */
 function wa_number(array $cliente): string
 {
@@ -26,6 +36,9 @@ function wa_number(array $cliente): string
  *
  * Mientras `whatsapp` esté vacío en config.php los CTAs apuntan a #contacto
  * en lugar de generar links rotos a wa.me.
+ *
+ * @param array $cliente Configuración del cliente.
+ * @return bool True si hay un número cargado.
  */
 function wa_disponible(array $cliente): bool
 {
@@ -34,6 +47,10 @@ function wa_disponible(array $cliente): bool
 
 /**
  * Link de WhatsApp del cliente con mensaje pre-cargado.
+ *
+ * @param array       $cliente Configuración del cliente.
+ * @param string|null $mensaje Texto alternativo; si es null usa el de config.
+ * @return string URL de wa.me o `#contacto` si no hay número disponible.
  */
 function wa_link(array $cliente, ?string $mensaje = null): string
 {
@@ -48,6 +65,9 @@ function wa_link(array $cliente, ?string $mensaje = null): string
 
 /**
  * Link de WhatsApp de MiLocalWeb (badge y aside publicitario).
+ *
+ * @param string $mensaje Mensaje pre-cargado para el equipo de MiLocalWeb.
+ * @return string URL de wa.me.
  */
 function mlw_wa_link(string $mensaje): string
 {
@@ -59,6 +79,13 @@ function mlw_wa_link(string $mensaje): string
  *
  * Sirve para imprimir iconos inline con `currentColor` sin depender de la
  * variable $svg del scope. Devuelve '' si el archivo no existe.
+ *
+ * El nombre se usa para armar una ruta fija dentro de assets/img/svg/; no
+ * admite rutas externas. El cache estático evita releer el mismo archivo
+ * varias veces en una misma request.
+ *
+ * @param string $nombre Nombre del icono sin extensión (ej. "whatsapp").
+ * @return string Markup SVG o cadena vacía.
  */
 function svg_icon(string $nombre): string
 {
@@ -78,7 +105,8 @@ function svg_icon(string $nombre): string
  * Si `redes_oficiales` está vacío, cae a `redes` para que el sitio siga
  * mostrando los enlaces disponibles mientras se cargan las cuentas nuevas.
  *
- * @return array<string, string>
+ * @param array $cliente Configuración del cliente.
+ * @return array<string, string> Red -> URL, sin valores vacíos.
  */
 function redes_oficiales(array $cliente): array
 {
@@ -99,7 +127,8 @@ function redes_oficiales(array $cliente): array
  * Devuelve una lista plana de URLs sin duplicados, pensada para el JSON-LD
  * (`sameAs`). El orden importa: las cuentas oficiales van primero.
  *
- * @return string[]
+ * @param array $cliente Configuración del cliente.
+ * @return string[] URLs únicas en orden de prioridad.
  */
 function redes_todas(array $cliente): array
 {
@@ -153,6 +182,9 @@ function mercadopago_icon(): string
 /**
  * Verifica que un asset declarado en config.php exista en disco.
  * Las rutas de config.php son relativas a la raíz del sitio.
+ *
+ * @param string $ruta Ruta pública (ej. "/assets/img/foo.webp").
+ * @return bool True si el archivo existe dentro del proyecto.
  */
 function asset_existe(string $ruta): bool
 {
@@ -164,6 +196,12 @@ function asset_existe(string $ruta): bool
  *
  * El texto se mantiene en un archivo por libro para no inflar config.php con
  * sinopsis extensas. Devuelve '' si el archivo no existe o el slug no es válido.
+ *
+ * El slug se valida con una allowlist (`[a-z0-9-]`) antes de armar la ruta:
+ * así un valor manipulado no puede escapar de productos/ con "../".
+ *
+ * @param array $libro Datos del libro (se usa `slug`).
+ * @return string Texto completo normalizado a saltos de línea LF.
  */
 function libro_descripcion(array $libro): string
 {
@@ -189,7 +227,8 @@ function libro_descripcion(array $libro): string
 /**
  * Divide un texto en párrafos, descartando líneas vacías.
  *
- * @return string[]
+ * @param string $texto Texto plano con párrafos separados por línea en blanco.
+ * @return string[] Lista de párrafos ya recortados.
  */
 function texto_parrafos(string $texto): array
 {
@@ -206,6 +245,13 @@ function texto_parrafos(string $texto): array
  *
  * Prioriza `sinopsis` de config.php. Si está vacío, usa el primer párrafo de
  * `descripcion.txt` y lo recorta en un límite de palabra.
+ *
+ * El recorte busca el último espacio antes del límite para no cortar palabras
+ * y limpia puntuación final antes de agregar la elipsis.
+ *
+ * @param array $libro Datos del libro.
+ * @param int   $max   Cantidad máxima de caracteres (por defecto 260).
+ * @return string Resumen listo para imprimir.
  */
 function libro_resumen(array $libro, int $max = 260): string
 {

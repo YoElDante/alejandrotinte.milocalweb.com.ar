@@ -11,10 +11,13 @@
 
 $slug_destacado = (string) ($cliente['libro_destacado'] ?? '');
 
+// Sin slug configurado la sección no se imprime (la home sigue funcionando).
 if ($slug_destacado === '') {
     return;
 }
 
+// El libro se busca por slug en el catálogo; si no existe, se omite el bloque
+// para no mostrar una sección vacía.
 $libro = null;
 foreach (($cliente['libros'] ?? []) as $candidato) {
     if (($candidato['slug'] ?? '') === $slug_destacado) {
@@ -34,6 +37,8 @@ $wa_hay      = wa_disponible($cliente);
 $url_libro = '/libros/' . $libro['slug'];
 $consultar = wa_link($cliente, 'Hola! Quiero pedir mi copia de "' . $libro['titulo'] . '"');
 
+// Portada: se prefiere la miniatura de 600px y se cae a la full si falta.
+// La imagen decorativa es independiente del libro y también es opcional.
 $portada = asset_existe((string) ($libro['portada'] ?? '')) ? $libro['portada'] : '';
 $portada_grilla = asset_existe((string) ($libro['portada_600'] ?? '')) ? $libro['portada_600'] : $portada;
 $alt     = 'Portada de ' . $libro['titulo'] . ' — ' . $cliente['nombre'];

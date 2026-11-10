@@ -1,5 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Alejandro Tinte — Footer + Badge MiLocalWeb + WhatsApp Float
+   Incluye los dos flotantes fijos (WhatsApp y volver arriba). Sus posiciones
+   se ajustan en responsive.css; mantener el orden para que no se superpongan.
    ═══════════════════════════════════════════════════════════════════════ */
 
 .site-footer {
@@ -10,6 +12,8 @@
   border-top: 1px solid var(--color-line);
 }
 
+/* Grid auto-fit: pasa de 3 columnas a 1 sin breakpoint explícito cuando el
+   ancho disponible no alcanza para tres mínimos de 220px. */
 .footer-content {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -241,6 +245,9 @@
 }
 
 /* ─── WhatsApp Float ─────────────────────────────────────────────── */
+/* WhatsApp arriba (bottom 100px) y volver arriba abajo (bottom 40px): se
+   apilan en la misma columna derecha sin taparse. En mobile cambian ambos
+   valores en responsive.css. z-index 200 los deja sobre todo el contenido. */
 
 .whatsapp-float {
   position: fixed;

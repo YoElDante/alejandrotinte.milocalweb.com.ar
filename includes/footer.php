@@ -13,6 +13,8 @@ $wa_hay      = wa_disponible($cliente);
 $email       = (string) ($cliente['email'] ?? '');
 
 // Redes oficiales (primarias) y personales (secundarias, sin repetir URLs).
+// Si una cuenta personal ya figura como oficial, se omite para no duplicar
+// iconos en el footer ni repetir enlaces para el usuario.
 $redes_oficiales  = redes_oficiales($cliente);
 $urls_oficiales   = array_map(static function ($url) {
     return trim((string) $url);
@@ -21,6 +23,8 @@ $redes_personales = array_filter($cliente['redes'] ?? [], static function ($url)
     return trim((string) $url) !== '' && !in_array(trim((string) $url), $urls_oficiales, true);
 });
 
+// Traducción clave de config -> [nombre accesible, icono SVG]. Si aparece una
+// red nueva sin entrada acá, se usa la clave como texto y no se pinta icono.
 $red_social_meta = [
     'instagram' => ['Instagram', 'instagram-filled'],
     'facebook'  => ['Facebook', 'facebook'],
@@ -162,6 +166,10 @@ $mlw_msg     = 'Hola! Quiero una web como la de ' . ($cliente['nombre'] ?? '') .
         <img src="" alt="" class="lightbox-img">
     </dialog>
 
+    <?php
+    // Scripts al final del body y con defer: se descargan en paralelo y se
+    // ejecutan en el orden definido en bootstrap.php. El ?v= viene de filemtime.
+    ?>
     <?php foreach ($jsFiles as $file): ?>
     <script src="<?= $js . $file . $jsVersions[$file] ?>" defer></script>
     <?php endforeach; ?>

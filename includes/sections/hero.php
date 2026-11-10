@@ -11,6 +11,8 @@
 
 $wa_hay = wa_disponible($cliente);
 
+// La foto es opcional: si el archivo no existe, el hero queda solo con el
+// degradado de fondo y no se imprime el <div> de imagen.
 $hero_img   = (string) ($cliente['hero_imagen'] ?? '');
 $tiene_hero = asset_existe($hero_img);
 ?>
@@ -34,6 +36,8 @@ $tiene_hero = asset_existe($hero_img);
             <p class="hero-lead"><?= e($cliente['hero_descripcion'] ?? '') ?></p>
 
             <div class="hero-actions">
+                <?php /* CTA principal del negocio: WhatsApp primero; "Ver las obras"
+                         queda como acción secundaria que baja a #libros. */ ?>
                 <a href="<?= e(wa_link($cliente)) ?>"
                    class="btn btn--whatsapp"
                    <?= $wa_hay ? 'target="_blank" rel="noopener noreferrer"' : '' ?>>

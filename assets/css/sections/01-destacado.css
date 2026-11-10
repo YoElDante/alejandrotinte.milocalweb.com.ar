@@ -1,0 +1,168 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Alejandro Tinte — Sección Obra destacada
+   Libro principal a pantalla completa (home). Depende de las variables de
+   base.css y del modo ficha de libro.php, que reutiliza varios estilos.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ─── Obra destacada ──────────────────────────────────────────────── */
+
+/* Full viewport menos el header fijo; el fondo repite el degradado del hero. */
+.featured {
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  padding: 5rem 1.5rem;
+  background: linear-gradient(160deg, var(--color-hero-bg-start) 0%, var(--color-hero-bg-end) 100%);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.featured-effects {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 10%, var(--color-primary-soft) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 85%, var(--color-primary-soft) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+/* Dos columnas: portada fija de hasta 300px y cuerpo flexible. Las áreas
+   con nombre permiten reordenar en tablet sin tocar el HTML. */
+.featured-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  grid-template-areas: "media body";
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.featured-media {
+  grid-area: media;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.featured-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: center;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.featured-more svg {
+  flex-shrink: 0;
+  font-size: 17px;
+}
+
+.featured-more:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+
+.featured-body {
+  grid-area: body;
+  position: relative;
+  z-index: 1;
+}
+
+.featured-cover {
+  display: block;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.featured-cover img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.featured-cover:hover {
+  transform: translateY(-4px);
+}
+
+.featured-body .section-kicker {
+  margin-bottom: 0.8rem;
+}
+
+.featured-title {
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  line-height: 1.08;
+}
+
+.featured-subtitle {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-primary);
+  margin-top: 0.6rem;
+}
+
+.featured-text {
+  max-width: 62ch;
+  margin-top: 1.5rem;
+  color: var(--color-muted);
+}
+
+.featured-text p + p {
+  margin-top: 0.9rem;
+}
+
+.featured-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.featured-link {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-bottom: 1px solid var(--color-line);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.featured-link:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* Imagen flotante decorativa (abajo a la derecha, escritorio).
+   La guitarra va inclinada 20° a la izquierda; el movimiento lo aporta
+   el scroll (muy sutil) desde featured-float.js. */
+.featured-float {
+  --float-rotate: -20deg;
+  position: absolute;
+  right: clamp(1rem, 4vw, 3rem);
+  bottom: 5rem;
+  z-index: 0;
+  width: clamp(120px, 16vw, 210px);
+  height: auto;
+  opacity: 0.85;
+  pointer-events: none;
+  transform: translateY(var(--float-y, 0px)) rotate(var(--float-rotate));
+  will-change: transform;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.45));
+}
+

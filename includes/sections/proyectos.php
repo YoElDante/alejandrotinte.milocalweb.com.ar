@@ -23,6 +23,8 @@ $wa_hay      = wa_disponible($cliente);
 
 $sumarse = wa_link($cliente, (string) ($cliente['proyectos_whatsapp_mensaje'] ?? 'Hola! Quiero sumarme al proyecto'));
 
+// Donación: si hay link de pago (Cafecito/MercadoPago) se usa ese; si no,
+// cae a WhatsApp con el mensaje de aporte para no dejar un CTA muerto.
 $donacion_url = trim((string) ($cliente['proyectos_donacion_url'] ?? ''));
 if ($donacion_url !== '') {
     $donacion = $donacion_url;

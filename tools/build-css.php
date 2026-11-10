@@ -24,11 +24,22 @@ $sourceFiles = [
     'base.css',
     'navbar.css',
     'hero.css',
-    'sections.css',
+    // La antigua sección monolítica se divide por bloque temático.
+    // El orden refleja el orden original de la cascada.
+    'sections/01-destacado.css',
+    'sections/02-libros.css',
+    'sections/03-lightbox.css',
+    'sections/04-proyectos.css',
+    'sections/05-autor.css',
+    'sections/06-contacto.css',
+    'sections/07-libro.css',
+    'sections/08-animaciones.css',
     'aside.css',
     'clientes.css',
     'footer.css',
-    'responsive.css',
+    // Responsive dividido por breakpoint para mantener archivos legibles.
+    'responsive/01-tablet.css',
+    'responsive/02-mobile.css',
 ];
 
 $css = [];
@@ -46,6 +57,8 @@ $bundle = implode("\n", $css);
 
 // Minificación conservadora: elimina comentarios /* */ y espacios redundantes.
 // No toca comentarios dentro de strings/comillas porque en CSS estándar no se usan.
+// Consecuencia útil: agregar solo comentarios a los parciales NO cambia el hash
+// del bundle; el hash solo se mueve si cambia una regla o un valor.
 $bundle = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!s', '', $bundle);
 $bundle = preg_replace('/\s+/', ' ', $bundle);
 $bundle = trim($bundle);

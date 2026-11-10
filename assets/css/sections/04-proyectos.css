@@ -1,0 +1,143 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Alejandro Tinte — Sección Proyectos en curso
+   Dos tarjetas (libros en producción y HacemeGancho) + CTA de colaboración.
+   En tablet/mobile pasa a una columna desde responsive.css.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Dos columnas iguales; stretch hace que ambas tarjetas midan lo mismo. */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.project-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 1.2rem;
+}
+
+.project-books {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.project-book + .project-book {
+  border-top: 1px solid var(--color-line);
+  padding-top: 1.5rem;
+}
+
+.project-book-title {
+  font-size: 1.35rem;
+}
+
+.project-book-desc {
+  margin-top: 0.4rem;
+  font-size: 0.92rem;
+  color: var(--color-muted);
+}
+
+.project-status {
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--color-line);
+  border-radius: 3px;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.project-media {
+  margin: -0.5rem -0.5rem 1.5rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+}
+
+.project-media img {
+  width: 100%;
+  height: auto;
+}
+
+.project-title {
+  font-size: 1.6rem;
+}
+
+.project-desc {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.project-link-wrap {
+  margin-top: auto;
+  padding-top: 1.2rem;
+}
+
+.project-link {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.project-link:hover {
+  border-color: var(--color-primary);
+}
+
+/* CTA en dos columnas: texto flexible y acciones a ancho natural. Los
+   créditos ocupan la fila completa con grid-column 1 / -1. */
+.project-cta {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, var(--color-hero-bg-start) 0%, var(--color-hero-bg-end) 100%);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem 2rem;
+  align-items: center;
+}
+
+.project-cta-title {
+  font-size: 1.5rem;
+}
+
+.project-cta-text p {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  max-width: 52ch;
+}
+
+.project-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.project-credits {
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-line);
+  padding-top: 1rem;
+}
+

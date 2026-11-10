@@ -17,6 +17,8 @@ $dominio = rtrim((string) ($cliente['dominio'] ?? 'alejandrotinte.milocalweb.com
 $base    = 'https://' . $dominio;
 $hoy     = date('Y-m-d');
 
+// Home primero y con prioridad máxima; cada ficha de libro entra con 0.8.
+// El sitemap se regenera al publicar, por eso todas las fechas son "hoy".
 $urls = [
     [
         'loc'        => $base . '/',
@@ -32,6 +34,8 @@ foreach (($cliente['libros'] ?? []) as $libro) {
         'changefreq' => 'monthly',
     ];
 
+    // La imagen es opcional: se agrega solo si la miniatura existe en disco.
+    // Usa el namespace image: (declarado abajo) para Google Imágenes.
     $portada = (string) ($libro['portada_600'] ?? '');
     if ($portada !== '' && is_file($baseDir . $portada)) {
         $entrada['imagen'] = $base . $portada;
@@ -45,6 +49,8 @@ $xml  = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
 $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"' . PHP_EOL;
 $xml .= '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . PHP_EOL;
 
+// Todo valor dinámico se escapa con ENT_XML1: un título con "&" o "<"
+// rompería el XML y el sitemap sería rechazado por los buscadores.
 foreach ($urls as $url) {
     $xml .= '    <url>' . PHP_EOL;
     $xml .= '        <loc>' . htmlspecialchars($url['loc'], ENT_XML1) . '</loc>' . PHP_EOL;

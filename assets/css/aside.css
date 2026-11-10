@@ -1,5 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Alejandro Tinte — Aside Publicitario
+   Autopromoción de MiLocalWeb. La visibilidad se controla desde
+   config.php['aside_visible']; en mobile el layout se apila (responsive.css).
    ═══════════════════════════════════════════════════════════════════════ */
 
 .publicidad-aside {

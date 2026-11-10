@@ -1,7 +1,11 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Alejandro Tinte — Navbar sticky + hamburger
+   Si se cambia una regla above-the-fold, replicarla en critical.css:
+   ese archivo se inyecta inline y define el primer paint.
    ═══════════════════════════════════════════════════════════════════════ */
 
+/* Capa fija superior. z-index 100 deja debajo overlay (99) y panel mobile
+   (105), y arriba del contenido normal. */
 .site-header {
   position: fixed;
   top: 0;
@@ -58,6 +62,8 @@
   color: var(--color-primary);
 }
 
+/* El !important vence el color muted de `.navbar-menu a`; sin él, el CTA
+   heredaría el gris del menú y perdería contraste sobre el verde. */
 .nav-cta {
   display: inline-flex;
   align-items: center;

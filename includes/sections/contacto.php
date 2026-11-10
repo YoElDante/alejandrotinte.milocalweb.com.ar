@@ -2,6 +2,10 @@
 /**
  * Sección Contacto — canal directo con el autor.
  *
+ * Muestra WhatsApp y/o email según lo cargado en config.php. Si no hay
+ * ninguno, imprime un aviso de dato pendiente en lugar de botones rotos.
+ * Las redes oficiales se listan debajo como refuerzo de presencia digital.
+ *
  * @package MiLocalWeb\Clientes
  */
 
@@ -9,6 +13,7 @@ $wa_hay = wa_disponible($cliente);
 $email  = (string) ($cliente['email'] ?? '');
 $redes  = redes_oficiales($cliente);
 
+// Clave de config -> [nombre accesible, icono SVG]; mismo mapa que el footer.
 $red_social_meta = [
     'instagram' => ['Instagram', 'instagram-filled'],
     'facebook'  => ['Facebook', 'facebook'],

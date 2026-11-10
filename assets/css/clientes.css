@@ -1,5 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Alejandro Tinte — Sección Clientes (logos portfolio)
+   Vitrina discreta: logos monocromos que recuperan su color al hover.
+   Solo se imprime si config.php['mostrar_clientes'] está activo.
    ═══════════════════════════════════════════════════════════════════════ */
 
 .section-clientes {
@@ -23,6 +25,9 @@
   flex-wrap: wrap;
 }
 
+/* Truco de marca: brightness(0) aplasta el logo a negro e invert(1) lo pasa a
+   blanco. Así cualquier logo se ve uniforme en el tema oscuro; al hover se
+   quita el filtro y vuelve el color original. */
 .cliente-logo-link {
   display: flex;
   align-items: center;

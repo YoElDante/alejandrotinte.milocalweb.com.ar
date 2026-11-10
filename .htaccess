@@ -1,6 +1,11 @@
 # MiLocalWeb — Landing Page de Cliente
 # Reglas de seguridad, caché y rendimiento.
 
+# Sin listados de directorio si falta un index.
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
 # ---- Headers de seguridad ----
 <IfModule mod_headers.c>
     Header always set X-Content-Type-Options "nosniff"
@@ -30,8 +35,20 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    RewriteRule ^(config|includes|tools)/ - [F,L]
-    RewriteRule ^router\.php$ - [F,L]
+    # Bloquear código, documentación interna, metadatos y archivos de trabajo.
+    # `_local/` contiene la ficha con datos personales del autor; nunca debe
+    # servirse por HTTP. Los PDFs y .txt de productos son privados mientras
+    # `libros_pdf_publico` sea false.
+    RewriteRule ^(?:config\.php|router\.php|includes|tools|_local|docs|\.git|\.atl)(?:/|$) - [F,L,NC]
+    RewriteRule ^(?:AGENTS|README)\.md$ - [F,L,NC]
+    RewriteRule ^productos/.*\.(?:pdf|txt|md|docx)$ - [F,L,NC]
+
+    # Alias de dominio: todo host que no sea el canónico (ni local) va 301
+    # al dominio principal, en un solo salto.
+    RewriteCond %{HTTP_HOST} !^alejandrotinte\.milocalweb\.com\.ar$ [NC]
+    RewriteCond %{HTTP_HOST} !^localhost(?::[0-9]+)?$ [NC]
+    RewriteCond %{HTTP_HOST} !^127\.0\.0\.1(?::[0-9]+)?$ [NC]
+    RewriteRule ^ https://alejandrotinte.milocalweb.com.ar%{REQUEST_URI} [L,R=301]
 
     RewriteCond %{HTTPS} off
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

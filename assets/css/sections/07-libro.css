@@ -1,0 +1,225 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Alejandro Tinte — Ficha de libro (/libros/{slug})
+   Portada + datos + sinopsis + CTAs de compra. El layout usa grid con áreas
+   nombradas para que la portada quede fija a la izquierda y el resto fluya.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.book-page {
+  position: relative;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 2.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.breadcrumb a {
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-primary);
+}
+
+.breadcrumb [aria-current="page"] {
+  color: var(--color-text);
+}
+
+/* La portada ocupa las cuatro filas de la izquierda; a la derecha se apilan
+   título, sinopsis, acciones y "volver". Un solo grid evita floats. */
+.book-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  grid-template-areas:
+    "cover head"
+    "cover text"
+    "cover actions"
+    "cover back";
+  column-gap: 3.5rem;
+  align-items: start;
+}
+
+.book-hero-cover {
+  grid-area: cover;
+}
+
+.book-hero-head {
+  grid-area: head;
+}
+
+.book-page-text {
+  grid-area: text;
+}
+
+.book-page-actions {
+  grid-area: actions;
+}
+
+.book-page-back {
+  grid-area: back;
+}
+
+/* Imagen "sticky" decorativa de la ficha (abajo a la derecha). */
+.book-page-float {
+  --float-rotate: 0deg;
+  position: absolute;
+  right: clamp(1rem, 5vw, 3rem);
+  bottom: 2rem;
+  z-index: 2;
+  width: clamp(140px, 18vw, 240px);
+  height: auto;
+  pointer-events: none;
+  opacity: 0.9;
+  transform: translateY(var(--float-y, 0px)) rotate(var(--float-rotate));
+  will-change: transform;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.45));
+}
+
+/* Variante acostada: se corre hacia adentro para que la rotación no
+   recorte la imagen contra el borde de la página. */
+
+.book-page-float--side {
+  right: clamp(2rem, 6vw, 4rem);
+  bottom: clamp(1.5rem, 5vw, 3rem);
+  width: clamp(150px, 16vw, 210px);
+}
+
+/* En escritorio ancho (la guitarra acostada tapa los botones), el flotante
+   acostado vuelve a estar parado con la leve inclinación estándar. El
+   !important vence al --float-rotate inline que pone libro.php (-90deg). */
+@media (min-width: 1151px) {
+  .book-page-float--side {
+    --float-rotate: -20deg !important;
+    right: clamp(1rem, 5vw, 3rem);
+    bottom: 2rem;
+    width: clamp(140px, 18vw, 240px);
+  }
+}
+
+.book-hero-cover img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+  box-shadow: var(--shadow-card);
+}
+
+.book-hero-cover-link {
+  display: block;
+  cursor: zoom-in;
+}
+
+.book-hero-cover-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-lg);
+}
+
+.book-page-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+}
+
+.book-page-subtitle {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--color-primary);
+  margin-top: 0.7rem;
+}
+
+.book-page-meta {
+  margin-top: 1.2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.book-page-text {
+  max-width: 65ch;
+  margin-top: 1.6rem;
+  color: var(--color-muted);
+}
+
+.book-page-text p + p {
+  margin-top: 1rem;
+}
+
+.book-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+/* El botón de Google Play baja a su propia fila (ancho natural, alineado a
+   la izquierda) para que la hilera no se estire en horizontal hasta tapar
+   el flotante decorativo. El contenedor fuerza el salto de línea. */
+.book-page-actions-break {
+  flex-basis: 100%;
+}
+
+.book-page-back {
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+/* Botón "Volver a las obras": arriba y abajo de la ficha. */
+.book-topbar {
+  margin-bottom: 1.6rem;
+}
+
+.book-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem 0.5rem 0.75rem;
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-muted);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.book-back svg {
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.book-back:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.book-back:hover svg {
+  transform: translateX(-2px);
+}
+
+.book-page-back a {
+  transition: color 0.2s;
+}
+
+.book-page-back a:hover {
+  color: var(--color-primary);
+}
+
+.book-notfound {
+  max-width: 560px;
+}
+
+.book-notfound .section-lead {
+  margin-bottom: 2rem;
+}
+

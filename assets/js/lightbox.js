@@ -7,6 +7,8 @@
 (function () {
   'use strict';
 
+  // Feature detection: si el navegador no soporta <dialog>, no se intercepta
+  // nada y los links siguen abriendo la imagen en una pestaña nueva.
   var dialog = document.getElementById('lightbox');
   if (!dialog || typeof dialog.showModal !== 'function') return;
 
@@ -14,6 +16,9 @@
   var closeBtn = dialog.querySelector('.lightbox-close');
   if (!img || !closeBtn) return;
 
+  /**
+   * Cierra el diálogo y limpia la imagen para liberar memoria.
+   */
   function cerrar() {
     dialog.close();
     img.removeAttribute('src');
@@ -24,6 +29,8 @@
     link.addEventListener('click', function (event) {
       event.preventDefault();
 
+      // El href apunta a la portada grande; la miniatura visible se usa como
+      // preview inmediato mientras se precarga la imagen definitiva.
       var fullSrc = link.getAttribute('href');
       var thumb = link.querySelector('img');
 
