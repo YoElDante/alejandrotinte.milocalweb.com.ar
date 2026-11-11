@@ -87,7 +87,7 @@ no aparece en la página.
 
 ### Fase 1 — Relevamiento (persona en campo)
 
-1. Copiar la estructura base del template `_template2/` al proyecto del cliente
+1. Copiar la estructura base del template `_template_INICIAL/` al proyecto del cliente
 2. Completar `docs/guia-relevamiento.md` con datos del cliente
 3. Si el cliente tiene redes sociales activas, generar `docs/informe_estilo_{cliente}.md`
    usando IA para analizar su identidad visual
