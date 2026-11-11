@@ -15,7 +15,7 @@ trazable, en lugar de depender solo de coincidencias de perfil.
 - Modelo de datos y backend operativos.
 - Gestión de expedientes e invitaciones funcionando.
 - Prototipo funcional avanzado.
-- Beta anunciada en el material gráfico: **abril de 2026** (verificar si sigue vigente).
+- En desarrollo activo, sin fecha de beta comprometida (10/11/2026, confirmado por el cliente: el autor sigue avanzando día a día). El material viejo decía "abril de 2026" y ya no vale; la web solo dice "En desarrollo activo".
 
 ## En la web
 
@@ -27,6 +27,6 @@ trazable, en lugar de depender solo de coincidencias de perfil.
 ## Pendientes
 
 - [ ] Link real de donación (Cafecito, MercadoPago, etc.).
-- [ ] Confirmar fecha de beta: el logo dice abril de 2026 y ya pasó.
+- [x] Fecha de beta: no hay fecha comprometida. Resuelto 10/11/2026 — la web no menciona ninguna fecha.
 - [ ] Confirmar si se linkea `hacemegancho.com` desde la landing literaria.
 - [ ] Logo en versión cuadrada o con fondo transparente para usos chicos.

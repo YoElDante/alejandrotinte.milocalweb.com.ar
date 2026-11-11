@@ -16,7 +16,10 @@ return [
     'slogan'           => 'Historias que dejan marca',
     'rubro'            => 'Escritor',
     'whatsapp'         => '5491170601270',
-    'email'            => '', // TODO: email de contacto
+    'email'            => 'escritor.alejandrotinte@gmail.com',
+    // El autor no revisa el correo a diario: donde la web muestra el email,
+    // aclara que hay que avisarle también por WhatsApp.
+    'email_nota'       => '¿Le enviaste un email? Avisale también por WhatsApp: es el canal que revisa a diario.',
     'whatsapp_mensaje' => 'Hola Alejandro! Vi tu web y quisiera consultar por tus libros',
 
     // ─── Hero Section ────────────────────────────────────────────────
@@ -61,6 +64,10 @@ return [
     // `sinopsis` vacía = la web usa el primer párrafo de `descripcion.txt`.
 
     'libros_intro' => 'Nueve títulos más. Elegí por dónde seguir.',
+
+    // Metodología de venta: PDF por WhatsApp (el autor lo envía) + tiendas
+    // donde ya está publicado. Se muestra en la sección de libros y en la ficha.
+    'libros_metodologia' => 'Edición digital (PDF): pedí tu copia por WhatsApp y arreglá directo con el escritor, que te la envía. Varios títulos también están en Amazon y Google Play.',
     'libros_imagen_decor' => '/assets/img/cliente/flotantes/mesa-vintage-con-cuatro-libros.webp',
 
     'libros' => [

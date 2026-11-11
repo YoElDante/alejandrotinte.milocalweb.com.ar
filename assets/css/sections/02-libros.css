@@ -379,3 +379,14 @@
   outline-offset: -2px;
 }
 
+/* ─── Leyenda de metodología de venta ─────────────────────────────── */
+/* Se muestra entre el encabezado de la sección y la grilla: aclara que la
+   venta es PDF por WhatsApp y que algunos títulos están en tiendas. */
+
+.books-metodologia {
+  margin: 0 0 1.75rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  max-width: 62ch;
+}
+

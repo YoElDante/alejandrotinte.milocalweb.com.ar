@@ -52,6 +52,10 @@ $section_clases = 'section section--alt books-section';
             <?php endif; ?>
         </header>
 
+        <?php if (!empty($cliente['libros_metodologia'])): ?>
+        <p class="books-metodologia"><?= e($cliente['libros_metodologia']) ?></p>
+        <?php endif; ?>
+
         <div class="books-grid">
             <?php foreach ($libros as $libro): ?>
             <?php
@@ -145,7 +149,7 @@ $section_clases = 'section section--alt books-section';
             $imagen_decor = (string) ($cliente['libros_imagen_decor'] ?? '');
             if ($imagen_decor !== '' && asset_existe($imagen_decor)):
             ?>
-            <img class="books-decor" src="<?= e($imagen_decor) ?>" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img class="books-decor" src="<?= e($imagen_decor) ?>"<?= img_dims_attrs($imagen_decor) ?> alt="" aria-hidden="true" loading="lazy" decoding="async">
             <?php endif; ?>
         </div>
 
@@ -183,6 +187,7 @@ $section_clases = 'section section--alt books-section';
                 <?php if ($ant_arte !== ''): ?>
                 <img class="books-collection-float"
                      src="<?= e($ant_arte) ?>"
+                    <?= img_dims_attrs($ant_arte) ?>
                      alt=""
                      aria-hidden="true"
                      loading="lazy"

@@ -76,7 +76,7 @@ $mlw_msg     = 'Hola! Quiero una web como la de ' . ($cliente['nombre'] ?? '') .
                 <?php endif; ?>
 
                 <?php if ($redes_personales): ?>
-                <div class="footer-social-group">
+                <div class="footer-social-group footer-social-group--minor">
                     <h4>Redes personales</h4>
                     <div class="social-links">
                         <?php foreach ($redes_personales as $clave => $url): ?>
@@ -106,6 +106,9 @@ $mlw_msg     = 'Hola! Quiero una web como la de ' . ($cliente['nombre'] ?? '') .
                 <?php endif; ?>
                 <?php if ($email !== ''): ?>
                 <a href="mailto:<?= e($email) ?>" class="footer-mail-link"><?= e($email) ?></a>
+                <?php if (!empty($cliente['email_nota'])): ?>
+                <p class="footer-mail-note"><?= e($cliente['email_nota']) ?></p>
+                <?php endif; ?>
                 <?php endif; ?>
                 <?php if (!$wa_hay && $email === ''): ?>
                 <p class="footer-pending">Datos de contacto <span class="pending">pendientes</span></p>

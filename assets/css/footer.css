@@ -131,6 +131,32 @@
   transform: none;
 }
 
+/* Grupo de redes personales: secundario. Íconos más chicos y menos
+   contraste que los oficiales, para que queden al final y sin destacar. */
+.footer-social-group--minor h4 {
+  font-size: 0.8rem;
+  opacity: 0.45;
+  margin-bottom: 0.6rem;
+}
+
+.footer-social-group--minor .social-link {
+  width: 30px;
+  height: 30px;
+  color: rgba(245, 240, 230, 0.45);
+}
+
+.footer-social-group--minor .social-link svg {
+  font-size: 16px;
+}
+
+/* Aclaración junto al email: el autor no revisa el correo a diario. */
+.footer-mail-note {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  max-width: 240px;
+}
+
 .footer-wa-link {
   display: inline-flex;
   align-items: center;

@@ -223,3 +223,10 @@
   margin-bottom: 2rem;
 }
 
+/* Aclaración de metodología en la ficha: edición digital por WhatsApp. */
+.book-page-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+

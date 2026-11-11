@@ -30,3 +30,11 @@
   margin-top: 1rem;
 }
 
+/* Aclaración del email: el autor no lo revisa a diario, avisar por WhatsApp. */
+.contact-note {
+  margin-top: 1.1rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+

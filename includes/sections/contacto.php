@@ -41,6 +41,10 @@ $red_social_meta = [
             <?php endif; ?>
         </div>
 
+        <?php if ($email !== '' && !empty($cliente['email_nota'])): ?>
+        <p class="contact-note"><?= e($cliente['email_nota']) ?></p>
+        <?php endif; ?>
+
         <?php if (!$wa_hay && $email === ''): ?>
         <p><span class="pending">WhatsApp y email pendientes de relevamiento</span></p>
         <?php endif; ?>
