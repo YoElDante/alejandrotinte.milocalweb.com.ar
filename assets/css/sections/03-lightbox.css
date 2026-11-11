@@ -61,6 +61,6 @@
 
 .lightbox-close:hover {
   background: var(--color-primary);
-  color: #14110F;
+  color: var(--color-bg);
 }
 

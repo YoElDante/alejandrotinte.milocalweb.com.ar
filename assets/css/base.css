@@ -22,6 +22,11 @@
   --color-hero-bg-start: #14110F;
   --color-hero-bg-end: #241C15;
 
+  /* Superficies derivadas: footer más oscuro que el body y variante para
+     backdrops oscuros (portada de libro). Requeridas por AGENTS.md. */
+  --color-footer-bg: #0D0B09;
+  --color-section-dark: #0F0D0B;
+
   /* WhatsApp: mismo verde en todos los proyectos. */
   --color-whatsapp: #25D366;
   --color-whatsapp-hover: #1EBE5B;
@@ -127,7 +132,7 @@ h1, h2, h3, h4 {
   top: 0;
   z-index: 300;
   background: var(--color-primary);
-  color: #14110F;
+  color: var(--color-bg);
   padding: 0.6rem 1rem;
   font-weight: 600;
   border-radius: 0 0 var(--radius) 0;
@@ -198,7 +203,7 @@ h1, h2, h3, h4 {
 
 .btn--primary {
   background: var(--color-primary);
-  color: #14110F;
+  color: var(--color-bg);
 }
 
 .btn--primary:hover {

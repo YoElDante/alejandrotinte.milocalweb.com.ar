@@ -26,28 +26,11 @@ $js     = $assets . '/js/';
 $img    = $assets . '/img/';
 $svg    = __DIR__ . '/../assets/img/svg/';
 
-// Archivos CSS fuente (modulares). Se combinan en build time con:
+// El CSS fuente (modular) se combina en build time con:
 //   php tools/build-css.php
-// El resultado es assets/css/styles.css, que se carga de forma asíncrona.
-// El CSS crítico (navbar + hero + variables) va inline en header.php.
-$cssSourceFiles = [
-    'base.css',
-    'navbar.css',
-    'hero.css',
-    'sections/01-destacado.css',
-    'sections/02-libros.css',
-    'sections/03-lightbox.css',
-    'sections/04-proyectos.css',
-    'sections/05-autor.css',
-    'sections/06-contacto.css',
-    'sections/07-libro.css',
-    'sections/08-animaciones.css',
-    'aside.css',
-    'clientes.css',
-    'footer.css',
-    'responsive/01-tablet.css',
-    'responsive/02-mobile.css',
-];
+// La lista de archivos vive solo en tools/build-css.php; el resultado es
+// assets/css/styles.css, que se carga de forma asíncrona. El CSS crítico
+// (navbar + hero + variables) va inline en header.php.
 
 // Orden de ejecución de los scripts. Todos se cargan con `defer`, por lo que
 // respetan este orden y corren después de parsear el HTML. Cada archivo se

@@ -49,6 +49,11 @@ return [
         'color-line'          => 'rgba(245, 240, 230, 0.10)',
         'color-hero-bg-start' => '#14110F',
         'color-hero-bg-end'   => '#241C15',
+
+        // Superficies derivadas: footer más oscuro que el body y variante
+        // para backdrops oscuros (portada de libro).
+        'color-footer-bg'     => '#0D0B09',
+        'color-section-dark'  => '#0F0D0B',
     ],
     'tipografia_titulos' => "Georgia, 'Times New Roman', serif",
     'tipografia_texto'   => "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
