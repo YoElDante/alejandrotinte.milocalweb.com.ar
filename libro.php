@@ -36,6 +36,11 @@ if ($libro === null) {
     $page_title       = 'Libro no encontrado — ' . $cliente['nombre'];
     $page_descripcion = 'La página que buscás no existe o el libro ya no está disponible.';
 
+    // 404 no indexable y con canonical propio: sin esto heredaba robots
+    // index,follow y el canonical de la home, contradiciendo el estado 404.
+    $page_robots    = 'noindex, follow';
+    $page_canonical = 'https://' . ($cliente['dominio'] ?? 'alejandrotinte.milocalweb.com.ar') . '/libros/' . $slug;
+
     require_once __DIR__ . '/includes/header.php';
     ?>
     <section class="section">
