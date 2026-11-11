@@ -108,12 +108,23 @@ $hg_url = trim((string) ($hg['url'] ?? ''));
                     Sumarme al proyecto
                 </a>
 
+                <?php if ($donacion_url !== ''): ?>
                 <a href="<?= e($donacion) ?>"
                    class="btn btn--mercadopago"
-                   <?= $donacion_url !== '' ? 'target="_blank" rel="noopener noreferrer"' : ($wa_hay ? 'target="_blank" rel="noopener noreferrer"' : '') ?>>
+                   target="_blank" rel="noopener noreferrer">
                     <?= mercadopago_icon() ?>
                     Apoyar con Mercado Pago
                 </a>
+                <?php else: ?>
+                <!-- Sin link de pago cargado: el CTA cae a WhatsApp, así que el
+                     label y el icono lo dicen en vez de prometer Mercado Pago. -->
+                <a href="<?= e($donacion) ?>"
+                   class="btn btn--whatsapp"
+                   <?= $wa_hay ? 'target="_blank" rel="noopener noreferrer"' : '' ?>>
+                    <?= wa_icon() ?>
+                    Apoyar con un aporte
+                </a>
+                <?php endif; ?>
             </div>
 
             <?php if (!empty($cliente['proyectos_donacion_texto'])): ?>
