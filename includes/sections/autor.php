@@ -32,7 +32,7 @@ $iniciales = mb_substr($iniciales, 0, 2);
                  class="about-photo"
                  loading="lazy"
                  decoding="async"
-                 width="600" height="800">
+                <?= img_dims_attrs($foto) ?>>
             <?php else: ?>
             <div class="about-photo about-photo--empty" role="img" aria-label="Retrato del autor pendiente">
                 <span><?= e($iniciales) ?></span>
@@ -45,6 +45,7 @@ $iniciales = mb_substr($iniciales, 0, 2);
             ?>
             <img class="about-media-float"
                  src="<?= e($autor_flotante) ?>"
+                <?= img_dims_attrs($autor_flotante) ?>
                  alt=""
                  aria-hidden="true"
                  loading="lazy"
@@ -105,7 +106,7 @@ $iniciales = mb_substr($iniciales, 0, 2);
             <div class="about-extra">
                 <img src="<?= e($autor_imagen) ?>"
                      alt="Alejandro Tinte leyendo A Fuego y Fierro en un café de Buenos Aires"
-                     width="900" height="506"
+                    <?= img_dims_attrs($autor_imagen) ?>
                      loading="lazy"
                      decoding="async">
             </div>

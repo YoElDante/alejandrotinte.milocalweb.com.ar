@@ -192,6 +192,55 @@ function asset_existe(string $ruta): bool
 }
 
 /**
+ * Dimensiones reales de una imagen local, para los atributos width/height.
+ *
+ * Las rutas de config.php son rutas públicas relativas a la raíz del sitio
+ * (mismo criterio que asset_existe()). El cache estático evita releer el
+ * mismo archivo varias veces en una misma request. Si el archivo no existe
+ * o no se puede leer, devuelve [0, 0].
+ *
+ * @param string $ruta Ruta pública (ej. "/assets/img/cliente/flotantes/avion.webp").
+ * @return int[] [ancho, alto].
+ */
+function img_dims(string $ruta): array
+{
+    static $cache = [];
+
+    if (array_key_exists($ruta, $cache)) {
+        return $cache[$ruta];
+    }
+
+    $dims = [0, 0];
+
+    if ($ruta !== '' && is_file(__DIR__ . '/..' . $ruta)) {
+        // Con @: si el archivo existiera pero estuviera corrupto, es preferible
+        // omitir los atributos (getimagesize emite warning) a romper el render.
+        $info = @getimagesize(__DIR__ . '/..' . $ruta);
+
+        if (is_array($info) && $info[0] > 0 && $info[1] > 0) {
+            $dims = [(int) $info[0], (int) $info[1]];
+        }
+    }
+
+    return $cache[$ruta] = $dims;
+}
+
+/**
+ * Atributos width/height de <img> a partir de las dimensiones reales del
+ * archivo. Devuelve '' si no se pudieron leer: es preferible omitir los
+ * atributos antes que imprimir valores inventados.
+ *
+ * @param string $ruta Ruta pública de la imagen.
+ * @return string Atributos listos para imprimir (ej. ' width="900" height="516"').
+ */
+function img_dims_attrs(string $ruta): string
+{
+    [$ancho, $alto] = img_dims($ruta);
+
+    return $ancho > 0 ? ' width="' . $ancho . '" height="' . $alto . '"' : '';
+}
+
+/**
  * Lee la descripción larga de un libro desde `productos/{slug}/descripcion.txt`.
  *
  * El texto se mantiene en un archivo por libro para no inflar config.php con

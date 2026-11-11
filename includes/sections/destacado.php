@@ -116,7 +116,7 @@ $flotante = asset_existe($flotante) ? $flotante : '';
         </div>
 
         <?php if ($flotante !== ''): ?>
-        <img class="featured-float" src="<?= e($flotante) ?>" alt="" aria-hidden="true" loading="eager" decoding="async">
+        <img class="featured-float" src="<?= e($flotante) ?>"<?= img_dims_attrs($flotante) ?> alt="" aria-hidden="true" loading="eager" decoding="async">
         <?php endif; ?>
     </div>
 </section>

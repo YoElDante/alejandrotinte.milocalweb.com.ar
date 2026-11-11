@@ -19,7 +19,7 @@ $tiene_hero = asset_existe($hero_img);
 <section class="hero" id="inicio">
     <?php if ($tiene_hero): ?>
     <div class="hero-bg" aria-hidden="true">
-        <img src="<?= e($hero_img) ?>"
+        <img src="<?= e($hero_img) ?>"<?= img_dims_attrs($hero_img) ?>
              alt=""
              loading="eager"
              fetchpriority="high"

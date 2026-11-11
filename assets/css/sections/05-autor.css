@@ -26,8 +26,8 @@
   filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.4));
 }
 
-/* Aunque la foto original sea vertical (600x800), acá se recorta a cuadrado
-   con object-fit: cover para que el bloque de texto quede alineado. */
+/* El marco queda cuadrado con object-fit: cover aunque la foto original
+   tenga otra proporción (los atributos width/height van con la real). */
 .about-photo {
   width: 100%;
   aspect-ratio: 1 / 1;
