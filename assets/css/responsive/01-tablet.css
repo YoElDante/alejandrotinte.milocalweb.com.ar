@@ -112,6 +112,7 @@
     grid-template-areas:
       "cover head"
       "cover actions"
+      "note  note"
       "text  text"
       "back  back";
     column-gap: 1.2rem;
@@ -158,6 +159,12 @@
   .book-page-actions .btn--amazon svg,
   .book-page-actions .btn--google svg {
     height: 1em;
+  }
+
+  /* Nota de metodología: fila propia, pegada a los botones de compra y
+     antes de la sinopsis. */
+  .book-page-note {
+    margin-top: 0.6rem;
   }
 
   .projects-grid {
