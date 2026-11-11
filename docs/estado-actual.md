@@ -11,6 +11,24 @@ Landing de autor de Alejandro Tinte: single-page con hero, obra destacada, catá
 - `_local/`, `docs/`, `config.php`, `router.php` y los PDFs/`.txt`/`.md`/`.docx` de productos quedaron bloqueados.
 - Detalle completo: [Resumen de fixes](../../../docs/resumen-fixes-2026-11-10.md).
 
+## Actualización 2026-11-10 — tanda P2
+
+P2 de código y ordenamiento, en cinco commits (`a661b4e`, `bd2de4f`, `5060640`, `bece207`, `5af0b4d`):
+
+- **Assets fuera de convención (AST-01/02/03):** 19 archivos sin uso (espacios, mayúsculas, acentos, portadas originales JPG/PNG y DOCX) quitados del repo; copias en `_audit/archivos-fuera-de-repos/alejandroTinte/`. Assets 100 % en convención.
+- **404 de ficha (P2 SEO):** `libro.php` define `$page_robots = 'noindex, follow'` y canonical propio de la URL solicitada; antes heredaba `index, follow` + canonical de la home.
+- **Contraste (A11Y-04):** texto verde muy oscuro `#0B3D2C` (6,2:1, AA) sobre el verde de WhatsApp en `.btn--whatsapp`, `.book-btn--whatsapp`, `.footer-wa-link`, `.whatsapp-float` y `.nav-cta`; el blanco daba 1,98:1.
+- **Jerarquía de headings (A11Y-06):** los 3 `<h4>` del footer son ahora `<p class="footer-heading">`; en las fichas no había h3 previo y rompían la jerarquía.
+- **Touch targets (MOB-05):** hamburguesa 36→44 px, `.social-link` 42→44 px; el grupo `--minor` conserva el ícono chico con caja transparente de 44 px.
+- **Variables de color (CSS-07/08):** `#14110F` → `var(--color-bg)` en skip-link, botones primarios, social hover, back-to-top y lightbox; nuevas `--color-footer-bg` y `--color-section-dark` en `config.php['colors']` + `base.css` + `critical.css`; `critical.css` sincronizado con `navbar.css`.
+- **Código muerto:** eliminado `$cssSourceFiles` de `includes/bootstrap.php`; la lista única de fuentes CSS vive en `tools/build-css.php`.
+- **CTA de donación:** sin `proyectos_donacion_url` el botón cae a WhatsApp mostrando icono de WhatsApp y label "Apoyar con un aporte" (antes prometía Mercado Pago).
+- **README raíz:** creado (`DOC-02`); `docs/` ya estaba versionado.
+
+Verificado con el harness de render local: home + 11 fichas + 404 renderizan OK, JSON-LD parsea (13 nodos) y el 404 emite `noindex, follow` con canonical propio. `styles.css` regenerado del bundle.
+
+**Pendiente P2:** compresión de imágenes (sin GD/ImageMagick en local), Lighthouse móvil, versión pública de la ficha del cliente.
+
 > El veredicto y el puntaje de abajo son el corte de la auditoría 2026-11-09; no se recalcularon.
 
 ## Veredicto
