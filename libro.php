@@ -85,15 +85,33 @@ if ($google_play !== '') {
     $meta[] = 'Disponible en Google Play';
 }
 
-$resumen_seo = $parrafos[0] ?? (string) ($libro['sinopsis'] ?? '');
-
 // ─── Variables que consume header.php ───────────────────────────
 // `$libro_actual` activa el modo ficha: header.php genera el JSON-LD de Book
 // + BreadcrumbList (en vez del catálogo completo) y ajusta canonical/OG.
 $libro_actual     = $libro;
 $libro_actual['descripcion'] = $descripcion;
-$page_title       = $libro['titulo'] . ' — ' . $cliente['nombre'];
-$page_descripcion = $resumen_seo;
+
+// Title: "Título — Autor" entra en el límite de ~65 caracteres de Google;
+// en títulos largos (antología) queda solo el título, que nunca se recorta.
+$page_title = $libro['titulo'] . ' — ' . $cliente['nombre'];
+if (mb_strlen($page_title) > 65) {
+    $page_title = $libro['titulo'];
+}
+
+// Description: resumen recortado a 155 caracteres para que Google no lo
+// trunque a mitad de palabra en resultados.
+$page_descripcion = libro_resumen($libro, 155);
+
+// Un primer párrafo corto deja una meta description pobre (ej. la antología,
+// que abre con "Seis historias..."): se suman los dos primeros párrafos y se
+// recorta con la misma lógica de límite de palabra.
+if (mb_strlen($page_descripcion) < 70) {
+    $parrafos_meta = texto_parrafos(libro_descripcion($libro));
+
+    if (count($parrafos_meta) > 1) {
+        $page_descripcion = libro_resumen(['sinopsis' => implode(' ', $parrafos_meta)], 155);
+    }
+}
 $page_canonical   = 'https://' . ($cliente['dominio'] ?? 'alejandrotinte.milocalweb.com.ar') . $url_libro;
 $page_og_image    = $portada_full;
 
@@ -182,6 +200,10 @@ require_once __DIR__ . '/includes/header.php';
                 <?php endif; ?>
             </div>
 
+            <?php if (!empty($cliente['libros_metodologia'])): ?>
+            <p class="book-page-note"><?= e($cliente['libros_metodologia']) ?></p>
+            <?php endif; ?>
+
             <?php if ($parrafos): ?>
             <div class="book-page-text">
                 <?php foreach ($parrafos as $parrafo): ?>
@@ -210,7 +232,7 @@ require_once __DIR__ . '/includes/header.php';
     if ($flotante !== '' && asset_existe($flotante)):
         $float_clase = 'book-page-float' . (abs($rotacion) >= 45 ? ' book-page-float--side' : '');
     ?>
-    <img class="<?= e($float_clase) ?>" src="<?= e($flotante) ?>" alt="" aria-hidden="true" loading="lazy" decoding="async"<?= $rotacion !== 0 ? ' style="--float-rotate: ' . $rotacion . 'deg"' : '' ?>>
+    <img class="<?= e($float_clase) ?>" src="<?= e($flotante) ?>"<?= img_dims_attrs($flotante) ?> alt="" aria-hidden="true" loading="lazy" decoding="async"<?= $rotacion !== 0 ? ' style="--float-rotate: ' . $rotacion . 'deg"' : '' ?>>
     <?php endif; ?>
 </article>
 

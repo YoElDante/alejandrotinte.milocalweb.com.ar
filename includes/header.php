@@ -45,7 +45,8 @@ $ld_autor = [
     'name'        => $cliente['nombre'],
     'jobTitle'    => $cliente['rubro'] ?? 'Escritor',
     'url'         => $seo_base_url . '/',
-    'description' => strip_tags($seo_descripcion),
+    // Bio fija desde config (no la description de la página, que cambia por URL).
+    'description' => (string) ($cliente['seo_descripcion'] ?? ''),
 ];
 
 $ld_sameas = redes_todas($cliente);
@@ -55,6 +56,27 @@ if ($ld_sameas) {
 if (asset_existe((string) ($cliente['autor_foto'] ?? ''))) {
     $ld_autor['image'] = $seo_base_url . $cliente['autor_foto'];
 }
+
+// Canales de venta de un libro (config.php): Amazon y Google Play se declaran
+// como offers para que Google/AI crucen la ficha con el lugar de compra.
+// Solo la URL del canal: los precios los fija cada tienda.
+$ld_stores = static function (string $slug) use ($cliente): array {
+    $offers = [];
+
+    foreach ([(string) ($cliente['amazon'][$slug] ?? ''), (string) ($cliente['google_play'][$slug] ?? '')] as $url) {
+        $url = trim($url);
+
+        if ($url !== '') {
+            $offers[] = [
+                '@type'        => 'Offer',
+                'url'          => $url,
+                'availability' => 'https://schema.org/InStock',
+            ];
+        }
+    }
+
+    return $offers;
+};
 
 $ld_graph = [$ld_autor];
 
@@ -82,6 +104,14 @@ if ($libro_actual) {
     }
     if (asset_existe((string) ($libro_actual['portada'] ?? ''))) {
         $book['image'] = $seo_base_url . $libro_actual['portada'];
+    }
+
+    // Edición digital: bookFormat EBook + offers con los canales de venta.
+    $book['bookFormat'] = 'https://schema.org/EBook';
+
+    $offers = $ld_stores((string) ($libro_actual['slug'] ?? ''));
+    if ($offers !== []) {
+        $book['offers'] = $offers;
     }
 
     $ld_graph[] = $book;
@@ -113,9 +143,11 @@ if ($libro_actual) {
     // Home: se declaran todos los libros, incluso los que no tienen portada
     // (image es opcional). Así las keywords de cada título quedan indexables.
     foreach ($libros as $libro) {
+        // @id = el de la ficha (/libros/{slug}#libro) para que home y ficha
+        // declaren el MISMO nodo Book y no dos entidades distintas.
         $book = [
             '@type'      => 'Book',
-            '@id'        => $seo_base_url . '/#libro-' . $libro['slug'],
+            '@id'        => $seo_base_url . '/libros/' . $libro['slug'] . '#libro',
             'name'       => $libro['titulo'],
             'author'     => ['@id' => $seo_base_url . '/#autor'],
             'inLanguage' => 'es-AR',
@@ -135,18 +167,28 @@ if ($libro_actual) {
             $book['image'] = $seo_base_url . $libro['portada'];
         }
 
+        // Edición digital: bookFormat EBook + offers con los canales de venta.
+        $book['bookFormat'] = 'https://schema.org/EBook';
+
+        $offers = $ld_stores((string) ($libro['slug'] ?? ''));
+        if ($offers !== []) {
+            $book['offers'] = $offers;
+        }
+
         $ld_graph[] = $book;
     }
 }
 
-// Nodo del sitio. `author` identifica a MiLocalWeb como proveedor de la web
-// (no confundir con el autor literario, que ya vive en $ld_autor).
+// Nodo del sitio. Nombre y description fijos desde config (no los de la
+// página: el nodo WebSite es uno solo en todo el sitio). `author` identifica
+// a MiLocalWeb como proveedor de la web (no confundir con el autor literario,
+// que ya vive en $ld_autor).
 $ld_graph[] = [
     '@type'       => 'WebSite',
     '@id'         => $seo_base_url . '/#website',
     'url'         => $seo_base_url . '/',
-    'name'        => $seo_title,
-    'description' => $seo_descripcion,
+    'name'        => $cliente['nombre'],
+    'description' => (string) ($cliente['seo_descripcion'] ?? ''),
     'inLanguage'  => 'es-AR',
     'author'      => [
         '@type'       => 'Organization',
