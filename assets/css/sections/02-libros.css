@@ -179,12 +179,12 @@
 .book-btn--whatsapp {
   background: var(--color-whatsapp);
   border-color: transparent;
-  color: #fff;
+  color: #0B3D2C;
 }
 
 .book-btn--whatsapp:hover {
   background: var(--color-whatsapp-hover);
-  color: #fff;
+  color: #0B3D2C;
 }
 
 /* "Conocer más": libro que se abre al pasar el mouse. */

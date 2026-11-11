@@ -86,15 +86,16 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 400; line-height
 .navbar-menu a:hover { color: var(--color-primary); }
 .nav-cta {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: #25D366; color: #fff !important;
+  background: var(--color-whatsapp); color: #0B3D2C !important;
   padding: 0.45rem 1.1rem; border-radius: 50px; font-weight: 700 !important;
   transition: background 0.2s, transform 0.15s;
 }
-.nav-cta:hover { background: var(--color-whatsapp-hover); transform: translateY(-1px); color: #fff !important; }
+.nav-cta:hover { background: var(--color-whatsapp-hover); transform: translateY(-1px); color: #0B3D2C !important; }
 .nav-cta svg { font-size: 16px; }
+/* 44x44: touch target mínimo WCAG. El padding centra las barras. */
 .navbar-toggle {
   display: none; flex-direction: column; justify-content: center; gap: 5px;
-  width: 36px; height: 36px; background: none; border: none; cursor: pointer;
+  width: 44px; height: 44px; background: none; border: none; cursor: pointer;
   padding: 6px; z-index: 110;
 }
 .toggle-bar {

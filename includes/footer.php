@@ -57,7 +57,7 @@ $mlw_msg     = 'Hola! Quiero una web como la de ' . ($cliente['nombre'] ?? '') .
             <div class="footer-social">
                 <?php if ($redes_oficiales): ?>
                 <div class="footer-social-group">
-                    <h4>Redes del autor</h4>
+                    <p class="footer-heading">Redes del autor</p>
                     <div class="social-links">
                         <?php foreach ($redes_oficiales as $clave => $url): ?>
                         <?php
@@ -77,7 +77,7 @@ $mlw_msg     = 'Hola! Quiero una web como la de ' . ($cliente['nombre'] ?? '') .
 
                 <?php if ($redes_personales): ?>
                 <div class="footer-social-group footer-social-group--minor">
-                    <h4>Redes personales</h4>
+                    <p class="footer-heading">Redes personales</p>
                     <div class="social-links">
                         <?php foreach ($redes_personales as $clave => $url): ?>
                         <?php
@@ -97,7 +97,7 @@ $mlw_msg     = 'Hola! Quiero una web como la de ' . ($cliente['nombre'] ?? '') .
             </div>
 
             <div class="footer-actions">
-                <h4>Contacto</h4>
+                <p class="footer-heading">Contacto</p>
                 <?php if ($wa_hay): ?>
                 <a href="<?= e($wa_full) ?>" target="_blank" rel="noopener noreferrer" class="footer-wa-link">
                     <?php include $svg . 'whatsapp.svg'; ?>

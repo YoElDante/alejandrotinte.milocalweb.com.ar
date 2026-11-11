@@ -217,16 +217,17 @@ h1, h2, h3, h4 {
   transform: translateY(-1px);
 }
 
-/* WhatsApp: verde de marca + icono, igual que en el resto de los proyectos. */
+/* WhatsApp: verde de marca con texto verde muy oscuro, 6.2:1 (AA) sobre el
+   verde; el blanco daba 1.98:1 y fallaba WCAG en los CTA principales. */
 
 .btn--whatsapp {
   background: var(--color-whatsapp);
-  color: #fff;
+  color: #0B3D2C;
 }
 
 .btn--whatsapp:hover {
   background: var(--color-whatsapp-hover);
-  color: #fff;
+  color: #0B3D2C;
   transform: translateY(-1px);
 }
 

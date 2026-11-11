@@ -63,13 +63,13 @@
 }
 
 /* El !important vence el color muted de `.navbar-menu a`; sin él, el CTA
-   heredaría el gris del menú y perdería contraste sobre el verde. */
+   heredaría el gris del menú. Texto verde muy oscuro: AA sobre el verde. */
 .nav-cta {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   background: var(--color-whatsapp);
-  color: #fff !important;
+  color: #0B3D2C !important;
   padding: 0.45rem 1.1rem;
   border-radius: 50px;
   font-weight: 700 !important;
@@ -79,18 +79,19 @@
 .nav-cta:hover {
   background: var(--color-whatsapp-hover);
   transform: translateY(-1px);
-  color: #fff !important;
+  color: #0B3D2C !important;
 }
 
 /* ─── Hamburger ───────────────────────────────────────────────────── */
 
+/* 44x44: touch target mínimo WCAG. El padding centra las barras. */
 .navbar-toggle {
   display: none;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   cursor: pointer;

@@ -56,8 +56,10 @@
   gap: 1.4rem;
 }
 
-.footer-social h4,
-.footer-actions h4 {
+/* Los títulos de las columnas del footer son <p class="footer-heading"> (no
+   headings): en la ficha no hay h3 que los preceda y rompían la jerarquía. */
+.footer-social .footer-heading,
+.footer-actions .footer-heading {
   font-family: var(--font-heading);
   font-size: 1.1rem;
   letter-spacing: 0.06em;
@@ -75,8 +77,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(245, 240, 230, 0.06);
   color: rgba(245, 240, 230, 0.6);
@@ -132,16 +134,18 @@
 }
 
 /* Grupo de redes personales: secundario. Íconos más chicos y menos
-   contraste que los oficiales, para que queden al final y sin destacar. */
-.footer-social-group--minor h4 {
+   contraste que los oficiales, para que queden al final y sin destacar.
+   El cajón es de 44px transparente (touch target) con ícono de 16px. */
+.footer-social-group--minor .footer-heading {
   font-size: 0.8rem;
   opacity: 0.45;
   margin-bottom: 0.6rem;
 }
 
 .footer-social-group--minor .social-link {
-  width: 30px;
-  height: 30px;
+  width: 44px;
+  height: 44px;
+  background: none;
   color: rgba(245, 240, 230, 0.45);
 }
 
@@ -163,7 +167,7 @@
   gap: 0.5rem;
   padding: 0.65rem 1.4rem;
   background: var(--color-whatsapp);
-  color: #fff;
+  color: #0B3D2C;
   font-weight: 600;
   border-radius: 4px;
   transition: background 0.2s, transform 0.15s;
@@ -172,7 +176,7 @@
 .footer-wa-link:hover {
   background: var(--color-whatsapp-hover);
   transform: translateY(-1px);
-  color: #fff;
+  color: #0B3D2C;
 }
 
 .footer-mail-link {
@@ -283,7 +287,7 @@
   width: 60px;
   height: 60px;
   background: var(--color-whatsapp);
-  color: #fff;
+  color: #0B3D2C;
   border-radius: 50%;
   display: flex;
   align-items: center;
