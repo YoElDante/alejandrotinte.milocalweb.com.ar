@@ -42,6 +42,7 @@ $jsFiles = [
     'lightbox.js',
     'featured-float.js',
     'books-decor.js',
+    'share.js',
 ];
 
 // Cache busting para styles.css (filemtime del bundle generado).

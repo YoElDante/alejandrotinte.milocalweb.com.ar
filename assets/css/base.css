@@ -202,37 +202,41 @@ h1, h2, h3, h4 {
 }
 
 .btn--primary {
-  background: var(--color-primary);
-  color: var(--color-bg);
+  background: linear-gradient(135deg, var(--color-primary-hover) 0%, var(--color-primary) 50%, var(--color-accent) 100%);
+  color: #fff;
+  transition: filter 0.2s, transform 0.15s;
 }
 
 .btn--primary:hover {
-  background: var(--color-primary-hover);
+  filter: brightness(1.08);
   transform: translateY(-1px);
 }
 
 .btn--ghost {
   border-color: var(--color-line);
+  background: linear-gradient(135deg, rgba(245, 240, 230, 0.06) 0%, rgba(245, 240, 230, 0.02) 100%);
   color: var(--color-text);
 }
 
 .btn--ghost:hover {
   border-color: var(--color-primary);
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.14) 0%, rgba(201, 162, 39, 0.04) 100%);
   color: var(--color-primary);
   transform: translateY(-1px);
 }
 
-/* WhatsApp: verde de marca con texto verde muy oscuro, 6.2:1 (AA) sobre el
-   verde; el blanco daba 1.98:1 y fallaba WCAG en los CTA principales. */
+/* WhatsApp: degradado con los colores de la marca (verde → teal), pedido
+   explícito del cliente. El texto blanco va sobre la parte más oscura del
+   degradado, que es la que garantiza legibilidad en el botón. */
 
 .btn--whatsapp {
-  background: var(--color-whatsapp);
-  color: #0B3D2C;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #fff;
 }
 
 .btn--whatsapp:hover {
-  background: var(--color-whatsapp-hover);
-  color: #0B3D2C;
+  background: linear-gradient(135deg, #1EBE5B 0%, #0F6B62 100%);
+  color: #fff;
   transform: translateY(-1px);
 }
 
@@ -240,16 +244,34 @@ h1, h2, h3, h4 {
   flex-shrink: 0;
 }
 
-/* Amazon: amarillo de compra con texto oscuro, como el botón de la tienda. */
+/* Instagram: degradado oficial de la marca (naranja → rojo → rosa → violeta).
+   Botón de redes del hero, mismo tamaño y peso que el de WhatsApp. */
+
+.btn--instagram {
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+.btn--instagram:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.btn--instagram svg {
+  flex-shrink: 0;
+}
+
+/* Amazon: amarillo de compra con texto oscuro, degradado suave de marca. */
 
 .btn--amazon {
-  background: var(--color-amazon);
+  background: linear-gradient(135deg, var(--color-amazon) 0%, var(--color-amazon-hover) 100%);
   color: #0F1111;
+  transition: filter 0.2s, transform 0.15s;
 }
 
 .btn--amazon:hover {
-  background: var(--color-amazon-hover);
-  color: #0F1111;
+  filter: brightness(1.05);
   transform: translateY(-1px);
 }
 
@@ -259,16 +281,16 @@ h1, h2, h3, h4 {
   flex-shrink: 0;
 }
 
-/* Google Play: verde de marca con el logo a color. */
+/* Google Play: verde de marca con el logo a color, degradado suave. */
 
 .btn--google {
-  background: var(--color-google-play);
+  background: linear-gradient(135deg, var(--color-google-play) 0%, var(--color-google-play-hover) 100%);
   color: #fff;
+  transition: filter 0.2s, transform 0.15s;
 }
 
 .btn--google:hover {
-  background: var(--color-google-play-hover);
-  color: #fff;
+  filter: brightness(1.08);
   transform: translateY(-1px);
 }
 
@@ -278,16 +300,16 @@ h1, h2, h3, h4 {
   flex-shrink: 0;
 }
 
-/* Mercado Pago: azul de marca con texto blanco. */
+/* Mercado Pago: azul de marca con texto blanco, degradado suave. */
 
 .btn--mercadopago {
-  background: var(--color-mercadopago);
+  background: linear-gradient(135deg, var(--color-mercadopago) 0%, var(--color-mercadopago-hover) 100%);
   color: #fff;
+  transition: filter 0.2s, transform 0.15s;
 }
 
 .btn--mercadopago:hover {
-  background: var(--color-mercadopago-hover);
-  color: #fff;
+  filter: brightness(1.08);
   transform: translateY(-1px);
 }
 

@@ -104,19 +104,3 @@
 .hero-actions .btn {
   width: 100%;
 }
-
-/* La flecha invita a seguir bajando. */
-.hero-actions .btn--primary svg {
-  animation: heroBounce 2.2s ease-in-out infinite;
-}
-
-@keyframes heroBounce {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(3px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-actions .btn--primary svg {
-    animation: none;
-  }
-}

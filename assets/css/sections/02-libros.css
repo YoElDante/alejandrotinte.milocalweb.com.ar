@@ -152,6 +152,7 @@
   border-radius: 4px;
   font-size: 0.8rem;
   font-weight: 600;
+  background: linear-gradient(135deg, rgba(245, 240, 230, 0.05) 0%, rgba(245, 240, 230, 0.01) 100%);
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
@@ -166,25 +167,25 @@
 }
 
 .book-btn--primary {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary-hover) 0%, var(--color-primary) 50%, var(--color-accent) 100%);
   border-color: transparent;
-  color: var(--color-bg);
+  color: #fff;
 }
 
 .book-btn--primary:hover {
-  background: var(--color-primary-hover);
-  color: var(--color-bg);
+  filter: brightness(1.08);
+  color: #fff;
 }
 
 .book-btn--whatsapp {
-  background: var(--color-whatsapp);
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
   border-color: transparent;
-  color: #0B3D2C;
+  color: #fff;
 }
 
 .book-btn--whatsapp:hover {
-  background: var(--color-whatsapp-hover);
-  color: #0B3D2C;
+  filter: brightness(1.08);
+  color: #fff;
 }
 
 /* "Conocer más": libro que se abre al pasar el mouse. */

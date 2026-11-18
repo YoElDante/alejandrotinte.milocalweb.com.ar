@@ -15,6 +15,9 @@ $wa_hay = wa_disponible($cliente);
 // degradado de fondo y no se imprime el <div> de imagen.
 $hero_img   = (string) ($cliente['hero_imagen'] ?? '');
 $tiene_hero = asset_existe($hero_img);
+
+// Instagram oficial: botón de redes del hero (debajo del CTA de WhatsApp).
+$ig_url = trim((string) (redes_oficiales($cliente)['instagram'] ?? ''));
 ?>
 <section class="hero" id="inicio">
     <?php if ($tiene_hero): ?>
@@ -36,17 +39,27 @@ $tiene_hero = asset_existe($hero_img);
             <p class="hero-lead"><?= e($cliente['hero_descripcion'] ?? '') ?></p>
 
             <div class="hero-actions">
-                <?php /* CTA principal del negocio: WhatsApp primero; "Ver las obras"
-                         queda como acción secundaria que baja a #libros. */ ?>
+                <?php /* CTA principal del negocio: WhatsApp primero; después
+                         Instagram y "Ver las obras" como acción que baja a #libros. */ ?>
                 <a href="<?= e(wa_link($cliente)) ?>"
                    class="btn btn--whatsapp"
                    <?= $wa_hay ? 'target="_blank" rel="noopener noreferrer"' : '' ?>>
                     <?= wa_icon() ?>
                     <?= e($cliente['hero_boton_sec'] ?? 'Contacto') ?>
                 </a>
+                <?php if ($ig_url !== ''): ?>
+                <a href="<?= e($ig_url) ?>"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn btn--instagram"
+                   aria-label="Instagram oficial de <?= e($cliente['nombre']) ?>">
+                    <?= svg_icon('instagram-filled') ?>
+                    Seguir en Instagram
+                </a>
+                <?php endif; ?>
                 <a href="#libros" class="btn btn--primary">
+                    <?= svg_icon('books') ?>
                     <?= e($cliente['hero_boton_ppal'] ?? 'Ver las obras') ?>
-                    <?= svg_icon('chevron-down') ?>
                 </a>
             </div>
         </div>

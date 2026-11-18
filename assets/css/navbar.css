@@ -63,23 +63,23 @@
 }
 
 /* El !important vence el color muted de `.navbar-menu a`; sin él, el CTA
-   heredaría el gris del menú. Texto verde muy oscuro: AA sobre el verde. */
+   heredaría el gris del menú. Degradado WhatsApp con texto blanco. */
 .nav-cta {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--color-whatsapp);
-  color: #0B3D2C !important;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #fff !important;
   padding: 0.45rem 1.1rem;
   border-radius: 50px;
   font-weight: 700 !important;
-  transition: background 0.2s, transform 0.15s;
+  transition: filter 0.2s, transform 0.15s;
 }
 
 .nav-cta:hover {
-  background: var(--color-whatsapp-hover);
+  filter: brightness(1.08);
   transform: translateY(-1px);
-  color: #0B3D2C !important;
+  color: #fff !important;
 }
 
 /* ─── Hamburger ───────────────────────────────────────────────────── */

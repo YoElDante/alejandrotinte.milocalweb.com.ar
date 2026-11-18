@@ -203,6 +203,39 @@ require_once __DIR__ . '/includes/header.php';
                     </a>
                 </div>
                 <?php endif; ?>
+
+                <?php
+                // Compartir la obra: un único botón compacto que despliega las
+                // opciones (WhatsApp / copiar link). El enlace de WhatsApp va sin
+                // número para que el usuario elija a quién enviarlo.
+                $share_texto = 'Te recomiendo "' . $libro['titulo'] . '" de ' . $cliente['nombre'] . ': ' . $page_canonical;
+                $share_wa    = 'https://wa.me/?text=' . urlencode($share_texto);
+                ?>
+                <div class="book-share">
+                    <button type="button"
+                            class="book-share-toggle js-share-toggle"
+                            aria-expanded="false"
+                            aria-controls="book-share-menu"
+                            aria-haspopup="true">
+                        <?= svg_icon('share') ?>
+                        <span>Compartir</span>
+                    </button>
+                    <div class="book-share-menu" id="book-share-menu" hidden>
+                        <a href="<?= e($share_wa) ?>"
+                           class="book-share-option"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <?= wa_icon() ?>
+                            WhatsApp
+                        </a>
+                        <button type="button"
+                                class="book-share-option js-copy-link"
+                                data-url="<?= e($page_canonical) ?>">
+                            <?= svg_icon('link') ?>
+                            <span class="js-copy-label">Copiar link</span>
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <?php if (!empty($cliente['libros_metodologia'])): ?>
