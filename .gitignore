@@ -15,3 +15,7 @@ Thumbs.db
 
 # Datos privados del cliente (documentos, PDFs, briefs, notas internas).
 _local/
+
+# Material exportado para redes: carátulas JPG (regenerables desde el WebP) y
+# textos de publicación. Se mantiene solo en local para el autor.
+instagram/
