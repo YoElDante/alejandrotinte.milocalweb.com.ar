@@ -120,6 +120,11 @@ if (mb_strlen($page_descripcion) < 70) {
 $page_canonical   = 'https://' . ($cliente['dominio'] ?? 'alejandrotinte.milocalweb.com.ar') . $url_libro;
 $page_og_image    = $portada_full;
 
+// Compartir la obra: enlace de WhatsApp (el usuario elige el destinatario) y
+// copia del link de la ficha. Se usa en el botón "Compartir" de la barra superior.
+$share_texto = 'Te recomiendo "' . $libro['titulo'] . '" de ' . $cliente['nombre'] . ': ' . $page_canonical;
+$share_wa    = 'https://wa.me/?text=' . urlencode($share_texto);
+
 require_once __DIR__ . '/includes/header.php';
 ?>
 <article class="book-page">
@@ -129,6 +134,32 @@ require_once __DIR__ . '/includes/header.php';
                 <?= svg_icon('chevron-left') ?>
                 Volver a las obras
             </a>
+
+            <div class="book-share">
+                <button type="button"
+                        class="book-share-toggle js-share-toggle"
+                        aria-expanded="false"
+                        aria-controls="book-share-menu"
+                        aria-haspopup="true">
+                    <?= svg_icon('share') ?>
+                    <span>Compartir</span>
+                </button>
+                <div class="book-share-menu" id="book-share-menu" hidden>
+                    <a href="<?= e($share_wa) ?>"
+                       class="book-share-option"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <?= wa_icon() ?>
+                        WhatsApp
+                    </a>
+                    <button type="button"
+                            class="book-share-option js-copy-link"
+                            data-url="<?= e($page_canonical) ?>">
+                        <?= svg_icon('link') ?>
+                        <span class="js-copy-label">Copiar link</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <nav class="breadcrumb" aria-label="Migas de pan">
@@ -203,44 +234,7 @@ require_once __DIR__ . '/includes/header.php';
                     </a>
                 </div>
                 <?php endif; ?>
-
-                <?php
-                // Compartir la obra: un único botón compacto que despliega las
-                // opciones (WhatsApp / copiar link). El enlace de WhatsApp va sin
-                // número para que el usuario elija a quién enviarlo.
-                $share_texto = 'Te recomiendo "' . $libro['titulo'] . '" de ' . $cliente['nombre'] . ': ' . $page_canonical;
-                $share_wa    = 'https://wa.me/?text=' . urlencode($share_texto);
-                ?>
-                <div class="book-share">
-                    <button type="button"
-                            class="book-share-toggle js-share-toggle"
-                            aria-expanded="false"
-                            aria-controls="book-share-menu"
-                            aria-haspopup="true">
-                        <?= svg_icon('share') ?>
-                        <span>Compartir</span>
-                    </button>
-                    <div class="book-share-menu" id="book-share-menu" hidden>
-                        <a href="<?= e($share_wa) ?>"
-                           class="book-share-option"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            <?= wa_icon() ?>
-                            WhatsApp
-                        </a>
-                        <button type="button"
-                                class="book-share-option js-copy-link"
-                                data-url="<?= e($page_canonical) ?>">
-                            <?= svg_icon('link') ?>
-                            <span class="js-copy-label">Copiar link</span>
-                        </button>
-                    </div>
-                </div>
             </div>
-
-            <?php if (!empty($cliente['libros_metodologia'])): ?>
-            <p class="book-page-note"><?= e($cliente['libros_metodologia']) ?></p>
-            <?php endif; ?>
 
             <?php if ($parrafos): ?>
             <div class="book-page-text">
@@ -273,5 +267,13 @@ require_once __DIR__ . '/includes/header.php';
     <img class="<?= e($float_clase) ?>" src="<?= e($flotante) ?>"<?= img_dims_attrs($flotante) ?> alt="" aria-hidden="true" loading="lazy" decoding="async"<?= $rotacion !== 0 ? ' style="--float-rotate: ' . $rotacion . 'deg"' : '' ?>>
     <?php endif; ?>
 </article>
+
+<?php if (!empty($cliente['libros_metodologia'])): ?>
+<div class="book-disclaimer">
+    <div class="container">
+        <p><?= e($cliente['libros_metodologia']) ?></p>
+    </div>
+</div>
+<?php endif; ?>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
